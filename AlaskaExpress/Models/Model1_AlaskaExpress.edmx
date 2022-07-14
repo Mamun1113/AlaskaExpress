@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AlaskaExpressModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="admin_email" />
+          </Key>
+          <Property Name="admin_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="admin_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="admin_fullname" Type="varchar" MaxLength="50" />
+          <Property Name="admin_address" Type="varchar(max)" />
+          <Property Name="admin_nid" Type="varchar" MaxLength="50" />
+          <Property Name="admin_phone" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="seller_email" />
+          </Key>
+          <Property Name="seller_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="seller_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="seller_fullname" Type="varchar" MaxLength="50" />
+          <Property Name="seller_address" Type="varchar(max)" />
+          <Property Name="seller_nid" Type="varchar" MaxLength="50" />
+          <Property Name="seller_phone" Type="varchar" MaxLength="50" />
+          <Property Name="seller_image" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SuperAdmin">
+          <Key>
+            <PropertyRef Name="super_email" />
+          </Key>
+          <Property Name="super_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="super_password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AlaskaExpressModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuperAdmin" EntityType="Self.SuperAdmin" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlaskaExpressModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="admin_email" />
+          </Key>
+          <Property Name="admin_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="admin_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="admin_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="admin_nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="admin_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="seller_email" />
+          </Key>
+          <Property Name="seller_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="seller_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="seller_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seller_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="seller_nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seller_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seller_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SuperAdmin">
+          <Key>
+            <PropertyRef Name="super_email" />
+          </Key>
+          <Property Name="super_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="super_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AlaskaExpressEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Sellers" EntityType="Self.Seller" />
+          <EntitySet Name="SuperAdmins" EntityType="Self.SuperAdmin" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlaskaExpressModelStoreContainer" CdmEntityContainer="AlaskaExpressEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="admin_email" ColumnName="admin_email" />
+                <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+                <ScalarProperty Name="admin_fullname" ColumnName="admin_fullname" />
+                <ScalarProperty Name="admin_address" ColumnName="admin_address" />
+                <ScalarProperty Name="admin_nid" ColumnName="admin_nid" />
+                <ScalarProperty Name="admin_phone" ColumnName="admin_phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sellers">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.Seller">
+              <MappingFragment StoreEntitySet="Seller">
+                <ScalarProperty Name="seller_email" ColumnName="seller_email" />
+                <ScalarProperty Name="seller_password" ColumnName="seller_password" />
+                <ScalarProperty Name="seller_fullname" ColumnName="seller_fullname" />
+                <ScalarProperty Name="seller_address" ColumnName="seller_address" />
+                <ScalarProperty Name="seller_nid" ColumnName="seller_nid" />
+                <ScalarProperty Name="seller_phone" ColumnName="seller_phone" />
+                <ScalarProperty Name="seller_image" ColumnName="seller_image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuperAdmins">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.SuperAdmin">
+              <MappingFragment StoreEntitySet="SuperAdmin">
+                <ScalarProperty Name="super_email" ColumnName="super_email" />
+                <ScalarProperty Name="super_password" ColumnName="super_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
