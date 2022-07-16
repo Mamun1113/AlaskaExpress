@@ -5,9 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3fbe2156da6d470a9ab5d37a3b3678c2" Name="Diagram1">
-        <EntityTypeShape EntityType="AlaskaExpressModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlaskaExpressModel.Seller" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlaskaExpressModel.SuperAdmin" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Manager" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Seller" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Admin" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Customer" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

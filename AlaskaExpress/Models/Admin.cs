@@ -14,11 +14,7 @@ namespace AlaskaExpress.Models
     
     public partial class Admin
     {
-        public string admin_email { get; set; }
-        public string admin_password { get; set; }
-        public string admin_fullname { get; set; }
-        public string admin_address { get; set; }
-        public string admin_nid { get; set; }
-        public string admin_phone { get; set; }
+        public string Admin_email { get; set; }
+        public string Admin_password { get; set; }
     }
 }

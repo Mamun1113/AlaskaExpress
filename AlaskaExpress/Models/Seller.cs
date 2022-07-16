@@ -14,12 +14,13 @@ namespace AlaskaExpress.Models
     
     public partial class Seller
     {
-        public string seller_email { get; set; }
-        public string seller_password { get; set; }
-        public string seller_fullname { get; set; }
-        public string seller_address { get; set; }
-        public string seller_nid { get; set; }
-        public string seller_phone { get; set; }
-        public string seller_image { get; set; }
+        public string Seller_email { get; set; }
+        public string Seller_password { get; set; }
+        public string Seller_fullname { get; set; }
+        public string Seller_address { get; set; }
+        public string Seller_nid { get; set; }
+        public string Seller_phone { get; set; }
+        public string Seller_image { get; set; }
+        public string Seller_addedby { get; set; }
     }
 }

@@ -26,5 +26,21 @@ namespace AlaskaExpress.Controllers
 
             return View();
         }
+
+        public ActionResult Signup()
+        {
+            
+            ViewBag.Message = "Your Signup page.";
+
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+
+            ViewBag.Message = "Your Login page.";
+
+            return View();
+        }
     }
 }

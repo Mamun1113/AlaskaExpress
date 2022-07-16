@@ -25,8 +25,9 @@ namespace AlaskaExpress.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<Seller> Sellers { get; set; }
-        public virtual DbSet<SuperAdmin> SuperAdmins { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
     }
 }

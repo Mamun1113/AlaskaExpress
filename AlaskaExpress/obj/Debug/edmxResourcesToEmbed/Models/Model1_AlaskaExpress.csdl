@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlaskaExpressModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AlaskaExpressEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Managers" EntityType="AlaskaExpressModel.Manager" />
+    <EntitySet Name="Sellers" EntityType="AlaskaExpressModel.Seller" />
+    <EntitySet Name="Admins" EntityType="AlaskaExpressModel.Admin" />
+    <EntitySet Name="Customers" EntityType="AlaskaExpressModel.Customer" />
+  </EntityContainer>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Manager_email" />
+    </Key>
+    <Property Name="Manager_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Manager_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Manager_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Manager_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Manager_nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Manager_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Seller">
+    <Key>
+      <PropertyRef Name="Seller_email" />
+    </Key>
+    <Property Name="Seller_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Seller_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Seller_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Seller_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Seller_nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Seller_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Seller_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Seller_addedby" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_email" />
+      <PropertyRef Name="Admin_password" />
+    </Key>
+    <Property Name="Admin_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Admin_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Customer_email" />
+      <PropertyRef Name="Customer_password" />
+      <PropertyRef Name="Customer_fullname" />
+      <PropertyRef Name="Customer_dob" />
+      <PropertyRef Name="Customer_gender" />
+      <PropertyRef Name="Customer_address" />
+      <PropertyRef Name="Customer_phone" />
+    </Key>
+    <Property Name="Customer_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_fullname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_dob" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

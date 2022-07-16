@@ -135,6 +135,12 @@
     <Compile Include="Models\Admin.cs">
       <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Manager.cs">
+      <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Model1_AlaskaExpress.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,12 +159,15 @@
     <Compile Include="Models\Seller.cs">
       <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SuperAdmin.cs">
-      <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-513.css" />
+    <Content Include="Content\bootstrap-Flatly.css" />
+    <Content Include="Content\bootstrap-Minty.css" />
+    <Content Include="Content\bootstrap-Morph.css" />
+    <Content Include="Content\bootstrap-Morph.min.css" />
+    <Content Include="Content\bootstrap-Sandstone.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -167,6 +176,63 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-grid.rtl.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-reboot.rtl.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-utilities.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-utilities.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-utilities.rtl.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap.css" />
+    <Content Include="lib\bootstrap\css\bootstrap.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap.rtl.css" />
+    <Content Include="lib\bootstrap\css\bootstrap.rtl.min.css" />
+    <Content Include="lib\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="lib\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="lib\bootstrap\js\bootstrap.esm.js" />
+    <Content Include="lib\bootstrap\js\bootstrap.esm.min.js" />
+    <Content Include="lib\bootstrap\js\bootstrap.js" />
+    <Content Include="lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="lib\font-awesome\css\all.css" />
+    <Content Include="lib\font-awesome\css\all.min.css" />
+    <Content Include="lib\font-awesome\css\brands.css" />
+    <Content Include="lib\font-awesome\css\brands.min.css" />
+    <Content Include="lib\font-awesome\css\fontawesome.css" />
+    <Content Include="lib\font-awesome\css\fontawesome.min.css" />
+    <Content Include="lib\font-awesome\css\regular.css" />
+    <Content Include="lib\font-awesome\css\regular.min.css" />
+    <Content Include="lib\font-awesome\css\solid.css" />
+    <Content Include="lib\font-awesome\css\solid.min.css" />
+    <Content Include="lib\font-awesome\css\svg-with-js.css" />
+    <Content Include="lib\font-awesome\css\svg-with-js.min.css" />
+    <Content Include="lib\font-awesome\css\v4-font-face.css" />
+    <Content Include="lib\font-awesome\css\v4-font-face.min.css" />
+    <Content Include="lib\font-awesome\css\v4-shims.css" />
+    <Content Include="lib\font-awesome\css\v4-shims.min.css" />
+    <Content Include="lib\font-awesome\css\v5-font-face.css" />
+    <Content Include="lib\font-awesome\css\v5-font-face.min.css" />
+    <Content Include="lib\font-awesome\js\all.js" />
+    <Content Include="lib\font-awesome\js\all.min.js" />
+    <Content Include="lib\font-awesome\js\brands.js" />
+    <Content Include="lib\font-awesome\js\brands.min.js" />
+    <Content Include="lib\font-awesome\js\conflict-detection.js" />
+    <Content Include="lib\font-awesome\js\conflict-detection.min.js" />
+    <Content Include="lib\font-awesome\js\fontawesome.js" />
+    <Content Include="lib\font-awesome\js\fontawesome.min.js" />
+    <Content Include="lib\font-awesome\js\regular.js" />
+    <Content Include="lib\font-awesome\js\regular.min.js" />
+    <Content Include="lib\font-awesome\js\solid.js" />
+    <Content Include="lib\font-awesome\js\solid.min.js" />
+    <Content Include="lib\font-awesome\js\v4-shims.js" />
+    <Content Include="lib\font-awesome\js\v4-shims.min.js" />
+    <Content Include="lib\font-awesome\sprites\brands.svg" />
+    <Content Include="lib\font-awesome\sprites\regular.svg" />
+    <Content Include="lib\font-awesome\sprites\solid.svg" />
     <Content Include="Models\Model1_AlaskaExpress.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1_AlaskaExpress.Context.cs</LastGenOutput>
@@ -186,6 +252,122 @@
     <Content Include="Models\Model1_AlaskaExpress.edmx.diagram">
       <DependentUpon>Model1_AlaskaExpress.edmx</DependentUpon>
     </Content>
+    <Content Include="libman.json" />
+    <Content Include="lib\font-awesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="lib\font-awesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="lib\font-awesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="lib\font-awesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="lib\font-awesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="lib\font-awesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="lib\font-awesome\webfonts\fa-v4compatibility.ttf" />
+    <Content Include="lib\font-awesome\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="lib\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-utilities.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-utilities.min.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap.rtl.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap.rtl.min.css.map" />
+    <Content Include="lib\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="lib\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="lib\bootstrap\js\bootstrap.esm.js.map" />
+    <Content Include="lib\bootstrap\js\bootstrap.esm.min.js.map" />
+    <Content Include="lib\bootstrap\js\bootstrap.js.map" />
+    <Content Include="lib\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="lib\bootstrap\scss\_accordion.scss" />
+    <Content Include="lib\bootstrap\scss\_alert.scss" />
+    <Content Include="lib\bootstrap\scss\_badge.scss" />
+    <Content Include="lib\bootstrap\scss\_breadcrumb.scss" />
+    <Content Include="lib\bootstrap\scss\_button-group.scss" />
+    <Content Include="lib\bootstrap\scss\_buttons.scss" />
+    <Content Include="lib\bootstrap\scss\_card.scss" />
+    <Content Include="lib\bootstrap\scss\_carousel.scss" />
+    <Content Include="lib\bootstrap\scss\_close.scss" />
+    <Content Include="lib\bootstrap\scss\_containers.scss" />
+    <Content Include="lib\bootstrap\scss\_dropdown.scss" />
+    <Content Include="lib\bootstrap\scss\_forms.scss" />
+    <Content Include="lib\bootstrap\scss\_functions.scss" />
+    <Content Include="lib\bootstrap\scss\_grid.scss" />
+    <Content Include="lib\bootstrap\scss\_helpers.scss" />
+    <Content Include="lib\bootstrap\scss\_images.scss" />
+    <Content Include="lib\bootstrap\scss\_list-group.scss" />
+    <Content Include="lib\bootstrap\scss\_mixins.scss" />
+    <Content Include="lib\bootstrap\scss\_modal.scss" />
+    <Content Include="lib\bootstrap\scss\_nav.scss" />
+    <Content Include="lib\bootstrap\scss\_navbar.scss" />
+    <Content Include="lib\bootstrap\scss\_offcanvas.scss" />
+    <Content Include="lib\bootstrap\scss\_pagination.scss" />
+    <Content Include="lib\bootstrap\scss\_placeholders.scss" />
+    <Content Include="lib\bootstrap\scss\_popover.scss" />
+    <Content Include="lib\bootstrap\scss\_progress.scss" />
+    <Content Include="lib\bootstrap\scss\_reboot.scss" />
+    <Content Include="lib\bootstrap\scss\_root.scss" />
+    <Content Include="lib\bootstrap\scss\_spinners.scss" />
+    <Content Include="lib\bootstrap\scss\_tables.scss" />
+    <Content Include="lib\bootstrap\scss\_toasts.scss" />
+    <Content Include="lib\bootstrap\scss\_tooltip.scss" />
+    <Content Include="lib\bootstrap\scss\_transitions.scss" />
+    <Content Include="lib\bootstrap\scss\_type.scss" />
+    <Content Include="lib\bootstrap\scss\_utilities.scss" />
+    <Content Include="lib\bootstrap\scss\_variables.scss" />
+    <Content Include="lib\bootstrap\scss\bootstrap-grid.scss" />
+    <Content Include="lib\bootstrap\scss\bootstrap-reboot.scss" />
+    <Content Include="lib\bootstrap\scss\bootstrap-utilities.scss" />
+    <Content Include="lib\bootstrap\scss\bootstrap.scss" />
+    <Content Include="lib\bootstrap\scss\forms\_floating-labels.scss" />
+    <Content Include="lib\bootstrap\scss\forms\_form-check.scss" />
+    <Content Include="lib\bootstrap\scss\forms\_form-control.scss" />
+    <Content Include="lib\bootstrap\scss\forms\_form-range.scss" />
+    <Content Include="lib\bootstrap\scss\forms\_form-select.scss" />
+    <Content Include="lib\bootstrap\scss\forms\_form-text.scss" />
+    <Content Include="lib\bootstrap\scss\forms\_input-group.scss" />
+    <Content Include="lib\bootstrap\scss\forms\_labels.scss" />
+    <Content Include="lib\bootstrap\scss\forms\_validation.scss" />
+    <Content Include="lib\bootstrap\scss\helpers\_clearfix.scss" />
+    <Content Include="lib\bootstrap\scss\helpers\_colored-links.scss" />
+    <Content Include="lib\bootstrap\scss\helpers\_position.scss" />
+    <Content Include="lib\bootstrap\scss\helpers\_ratio.scss" />
+    <Content Include="lib\bootstrap\scss\helpers\_stacks.scss" />
+    <Content Include="lib\bootstrap\scss\helpers\_stretched-link.scss" />
+    <Content Include="lib\bootstrap\scss\helpers\_text-truncation.scss" />
+    <Content Include="lib\bootstrap\scss\helpers\_visually-hidden.scss" />
+    <Content Include="lib\bootstrap\scss\helpers\_vr.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_alert.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_backdrop.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_border-radius.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_box-shadow.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_breakpoints.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_buttons.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_caret.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_clearfix.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_color-scheme.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_container.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_deprecate.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_forms.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_gradients.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_grid.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_image.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_list-group.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_lists.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_pagination.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_reset-text.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_resize.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_table-variants.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_text-truncate.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_transition.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_utilities.scss" />
+    <Content Include="lib\bootstrap\scss\mixins\_visually-hidden.scss" />
+    <Content Include="lib\bootstrap\scss\utilities\_api.scss" />
+    <Content Include="lib\bootstrap\scss\vendor\_rfs.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -208,9 +390,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Shared\About.cshtml" />
+    <Content Include="Views\Shared\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Signup.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
