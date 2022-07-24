@@ -11,16 +11,24 @@ namespace AlaskaExpress.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Seller
     {
+        [DisplayName("Seller Email")]
+        [DataType(DataType.EmailAddress)]
         public string Seller_email { get; set; }
+
+        [DisplayName("Seller Password")]
+        [DataType(DataType.Password)]
         public string Seller_password { get; set; }
         public string Seller_fullname { get; set; }
         public string Seller_address { get; set; }
         public string Seller_nid { get; set; }
         public string Seller_phone { get; set; }
         public string Seller_image { get; set; }
+
         public string Seller_addedby { get; set; }
     }
 }
