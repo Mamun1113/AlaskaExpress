@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+
+<div class="justify-content-center">
+    <div style="padding-left:40%">
+        <h3>Get Search Bus</h3>
+        <form action="/Home/GetBus" method="post">
+        <h5>From</h5>
+        <input type="text" name="fromJourney"placeholder="Starting Point" />
+        <h5>To</h5>
+        <input type="text" name="toJourney"placeholder="Ending Point" />
+        <h5>Journey Date</h5>
+        <input type="text" name="journeyDate"placeholder="dd/mm/yyyy" />
+        <input type="submit" value="Search" style="border:ridge; background-color:cadetblue" />
+        </form>
+         </div>
+</div>

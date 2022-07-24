@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AlaskaExpressModelStoreContainer" CdmEntityContainer="AlaskaExpressEntities">
+    <EntitySetMapping Name="BusDetails">
+      <EntityTypeMapping TypeName="AlaskaExpressModel.BusDetail">
+        <MappingFragment StoreEntitySet="BusDetails">
+          <ScalarProperty Name="busID" ColumnName="busID" />
+          <ScalarProperty Name="busFrom" ColumnName="busFrom" />
+          <ScalarProperty Name="busTo" ColumnName="busTo" />
+          <ScalarProperty Name="totalSeat" ColumnName="totalSeat" />
+          <ScalarProperty Name="busCoach" ColumnName="busCoach" />
+          <ScalarProperty Name="CostPerSeat" ColumnName="CostPerSeat" />
+          <ScalarProperty Name="journeyDate" ColumnName="journeyDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Managers">
+      <EntityTypeMapping TypeName="AlaskaExpressModel.Manager">
+        <MappingFragment StoreEntitySet="Manager">
+          <ScalarProperty Name="Manager_email" ColumnName="Manager_email" />
+          <ScalarProperty Name="Manager_password" ColumnName="Manager_password" />
+          <ScalarProperty Name="Manager_fullname" ColumnName="Manager_fullname" />
+          <ScalarProperty Name="Manager_address" ColumnName="Manager_address" />
+          <ScalarProperty Name="Manager_nid" ColumnName="Manager_nid" />
+          <ScalarProperty Name="Manager_phone" ColumnName="Manager_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sellers">
+      <EntityTypeMapping TypeName="AlaskaExpressModel.Seller">
+        <MappingFragment StoreEntitySet="Seller">
+          <ScalarProperty Name="Seller_email" ColumnName="Seller_email" />
+          <ScalarProperty Name="Seller_password" ColumnName="Seller_password" />
+          <ScalarProperty Name="Seller_fullname" ColumnName="Seller_fullname" />
+          <ScalarProperty Name="Seller_address" ColumnName="Seller_address" />
+          <ScalarProperty Name="Seller_nid" ColumnName="Seller_nid" />
+          <ScalarProperty Name="Seller_phone" ColumnName="Seller_phone" />
+          <ScalarProperty Name="Seller_image" ColumnName="Seller_image" />
+          <ScalarProperty Name="Seller_addedby" ColumnName="Seller_addedby" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="AlaskaExpressModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Admin_email" ColumnName="Admin_email" />
+          <ScalarProperty Name="Admin_password" ColumnName="Admin_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="AlaskaExpressModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Customer_email" ColumnName="Customer_email" />
+          <ScalarProperty Name="Customer_password" ColumnName="Customer_password" />
+          <ScalarProperty Name="Customer_fullname" ColumnName="Customer_fullname" />
+          <ScalarProperty Name="Customer_dob" ColumnName="Customer_dob" />
+          <ScalarProperty Name="Customer_gender" ColumnName="Customer_gender" />
+          <ScalarProperty Name="Customer_address" ColumnName="Customer_address" />
+          <ScalarProperty Name="Customer_phone" ColumnName="Customer_phone" />
+          <ScalarProperty Name="Customer_nid" ColumnName="Customer_nid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
