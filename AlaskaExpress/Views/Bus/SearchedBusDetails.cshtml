@@ -45,17 +45,18 @@
                         @item.Bus_journey_time
                     </td>
                     <td>
-                        @item.Bus_journey_day
+                        @Convert.ToString(item.Bus_journey_day).Substring(0, 9)
                     </td>
                     <td>
                         @item.Bus_numberplate
                     </td>
                     <td>
-                        @Html.ActionLink("Check Ticket Availability", "Edit", new { id = item.Bus_id })
+                            @Html.ActionLink("Check availability", "Seat", new { idre = item.Bus_id })
                     </td>
                 </tr>
             }
         </tbody>
 
     </table>
+
 </div>

@@ -149,6 +149,7 @@
     <Compile Include="Models\Bus.cs">
       <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ButtonModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
@@ -169,6 +170,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Seat.cs">
+      <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Seller.cs">
       <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
@@ -209,6 +213,9 @@
     <Content Include="Images\aebg4.jpg" />
     <Content Include="Images\aebg5.jpg" />
     <Content Include="Images\aebg6.jpg" />
+    <Content Include="Images\Black.png" />
+    <Content Include="Images\Blue.png" />
+    <Content Include="Images\Red.png" />
     <Content Include="Models\Model_AlaskaExpress.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model_AlaskaExpress.Context.cs</LastGenOutput>
@@ -292,7 +299,7 @@
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Admin\CreateManager.cshtml" />
     <Content Include="Views\Admin\DeleteManager.cshtml" />
-    <Content Include="Views\Admin\ManagerList.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Bus\Create.cshtml" />
     <Content Include="Views\Bus\Delete.cshtml" />
     <Content Include="Views\Bus\Details.cshtml" />
@@ -315,6 +322,8 @@
     <Content Include="Views\Bus\SearchedBusDetails.cshtml" />
     <Content Include="Views\Home\Dropdown.cshtml" />
     <Content Include="Views\Sweet\Alert.cshtml" />
+    <Content Include="Views\Seller\Index - Copy.cshtml" />
+    <Content Include="Views\Shared\Seat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,7 +18,7 @@
     <Property Name="Bus_coach" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Bus_cost_per_seat" Type="int" Nullable="false" />
     <Property Name="Bus_journey_time" Type="varchar" MaxLength="50" />
-    <Property Name="Bus_journey_day" Type="varchar" MaxLength="50" />
+    <Property Name="Bus_journey_day" Type="date" />
     <Property Name="Bus_numberplate" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Customer">
@@ -45,6 +45,30 @@
     <Property Name="Manager_nid" Type="varchar" MaxLength="50" />
     <Property Name="Manager_phone" Type="varchar" MaxLength="50" />
     <Property Name="Bus_id" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AlaskaExpress.dbo.Seat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Seat">
+    <Key>
+      <PropertyRef Name="Bus_id" />
+    </Key>
+    <Property Name="Bus_id" Type="int" Nullable="false" />
+    <Property Name="A1" Type="int" />
+    <Property Name="A2" Type="int" />
+    <Property Name="B1" Type="int" />
+    <Property Name="B2" Type="int" />
+    <Property Name="C1" Type="int" />
+    <Property Name="C2" Type="int" />
+    <Property Name="D1" Type="int" />
+    <Property Name="D2" Type="int" />
+    <Property Name="E1" Type="int" />
+    <Property Name="E2" Type="int" />
+    <Property Name="F1" Type="int" />
+    <Property Name="F2" Type="int" />
+    <Property Name="G1" Type="int" />
+    <Property Name="G2" Type="int" />
+    <Property Name="H1" Type="int" />
+    <Property Name="H2" Type="int" />
   </EntityType>
   <EntityType Name="Seller">
     <Key>
@@ -128,6 +152,27 @@
     <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seat" EntityType="Self.Seat" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Seat].[Bus_id] AS [Bus_id], 
+    [Seat].[A1] AS [A1], 
+    [Seat].[A2] AS [A2], 
+    [Seat].[B1] AS [B1], 
+    [Seat].[B2] AS [B2], 
+    [Seat].[C1] AS [C1], 
+    [Seat].[C2] AS [C2], 
+    [Seat].[D1] AS [D1], 
+    [Seat].[D2] AS [D2], 
+    [Seat].[E1] AS [E1], 
+    [Seat].[E2] AS [E2], 
+    [Seat].[F1] AS [F1], 
+    [Seat].[F2] AS [F2], 
+    [Seat].[G1] AS [G1], 
+    [Seat].[G2] AS [G2], 
+    [Seat].[H1] AS [H1], 
+    [Seat].[H2] AS [H2]
+    FROM [dbo].[Seat] AS [Seat]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__Manager__Bus_id__1A14E395" Association="Self.FK__Manager__Bus_id__1A14E395">
       <End Role="Bus" EntitySet="Bus" />
       <End Role="Manager" EntitySet="Manager" />

@@ -28,7 +28,7 @@ namespace AlaskaExpress.Models
         public string Bus_coach { get; set; }
         public int Bus_cost_per_seat { get; set; }
         public string Bus_journey_time { get; set; }
-        public string Bus_journey_day { get; set; }
+        public Nullable<System.DateTime> Bus_journey_day { get; set; }
         public string Bus_numberplate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

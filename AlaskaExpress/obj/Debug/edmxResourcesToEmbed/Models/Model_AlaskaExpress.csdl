@@ -7,22 +7,6 @@
     <Property Name="Admin_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
-  <EntityType Name="Bus">
-    <Key>
-      <PropertyRef Name="Bus_id" />
-    </Key>
-    <Property Name="Bus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Bus_start_location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Bus_end_location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Bus_total_seat" Type="Int32" Nullable="false" />
-    <Property Name="Bus_coach" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Bus_cost_per_seat" Type="Int32" Nullable="false" />
-    <Property Name="Bus_journey_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Bus_journey_day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Bus_numberplate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Managers" Relationship="AlaskaExpressModel.FK__Manager__Bus_id__1A14E395" FromRole="Bus" ToRole="Manager" />
-    <NavigationProperty Name="Tickets" Relationship="AlaskaExpressModel.FK__Ticket__Bus_id__1B0907CE" FromRole="Bus" ToRole="Ticket" />
-  </EntityType>
   <EntityType Name="Customer">
     <Key>
       <PropertyRef Name="Customer_email" />
@@ -77,25 +61,16 @@
     <Property Name="Bus_id" Type="Int32" />
     <Property Name="Customer_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Seller_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Bus" Relationship="AlaskaExpressModel.FK__Ticket__Bus_id__1B0907CE" FromRole="Ticket" ToRole="Bus" />
     <NavigationProperty Name="Customer" Relationship="AlaskaExpressModel.FK__Ticket__Customer__1BFD2C07" FromRole="Ticket" ToRole="Customer" />
     <NavigationProperty Name="Seller" Relationship="AlaskaExpressModel.FK__Ticket__Seller_e__1CF15040" FromRole="Ticket" ToRole="Seller" />
+    <NavigationProperty Name="Bus" Relationship="AlaskaExpressModel.FK__Ticket__Bus_id__1B0907CE" FromRole="Ticket" ToRole="Bus" />
   </EntityType>
   <EntityContainer Name="AlaskaExpressEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Admins" EntityType="Self.Admin" />
-    <EntitySet Name="Buses" EntityType="Self.Bus" />
     <EntitySet Name="Customers" EntityType="Self.Customer" />
     <EntitySet Name="Managers" EntityType="Self.Manager" />
     <EntitySet Name="Sellers" EntityType="Self.Seller" />
     <EntitySet Name="Tickets" EntityType="Self.Ticket" />
-    <AssociationSet Name="FK__Manager__Bus_id__1A14E395" Association="AlaskaExpressModel.FK__Manager__Bus_id__1A14E395">
-      <End Role="Bus" EntitySet="Buses" />
-      <End Role="Manager" EntitySet="Managers" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Ticket__Bus_id__1B0907CE" Association="AlaskaExpressModel.FK__Ticket__Bus_id__1B0907CE">
-      <End Role="Bus" EntitySet="Buses" />
-      <End Role="Ticket" EntitySet="Tickets" />
-    </AssociationSet>
     <AssociationSet Name="FK__Ticket__Customer__1BFD2C07" Association="AlaskaExpressModel.FK__Ticket__Customer__1BFD2C07">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Ticket" EntitySet="Tickets" />
@@ -104,31 +79,17 @@
       <End Role="Seller" EntitySet="Sellers" />
       <End Role="Ticket" EntitySet="Tickets" />
     </AssociationSet>
+    <EntitySet Name="Buses" EntityType="AlaskaExpressModel.Bus" />
+    <AssociationSet Name="FK__Manager__Bus_id__1A14E395" Association="AlaskaExpressModel.FK__Manager__Bus_id__1A14E395">
+      <End Role="Bus" EntitySet="Buses" />
+      <End Role="Manager" EntitySet="Managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__Bus_id__1B0907CE" Association="AlaskaExpressModel.FK__Ticket__Bus_id__1B0907CE">
+      <End Role="Bus" EntitySet="Buses" />
+      <End Role="Ticket" EntitySet="Tickets" />
+    </AssociationSet>
+    <EntitySet Name="Seats" EntityType="AlaskaExpressModel.Seat" />
   </EntityContainer>
-  <Association Name="FK__Manager__Bus_id__1A14E395">
-    <End Type="AlaskaExpressModel.Bus" Role="Bus" Multiplicity="0..1" />
-    <End Type="AlaskaExpressModel.Manager" Role="Manager" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Bus">
-        <PropertyRef Name="Bus_id" />
-      </Principal>
-      <Dependent Role="Manager">
-        <PropertyRef Name="Bus_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Ticket__Bus_id__1B0907CE">
-    <End Type="AlaskaExpressModel.Bus" Role="Bus" Multiplicity="0..1" />
-    <End Type="AlaskaExpressModel.Ticket" Role="Ticket" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Bus">
-        <PropertyRef Name="Bus_id" />
-      </Principal>
-      <Dependent Role="Ticket">
-        <PropertyRef Name="Bus_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Ticket__Customer__1BFD2C07">
     <End Type="AlaskaExpressModel.Customer" Role="Customer" Multiplicity="0..1" />
     <End Type="AlaskaExpressModel.Ticket" Role="Ticket" Multiplicity="*" />
@@ -153,4 +114,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Bus">
+    <Key>
+      <PropertyRef Name="Bus_id" />
+    </Key>
+    <Property Name="Bus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bus_start_location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bus_end_location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bus_total_seat" Type="Int32" Nullable="false" />
+    <Property Name="Bus_coach" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bus_cost_per_seat" Type="Int32" Nullable="false" />
+    <Property Name="Bus_journey_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bus_journey_day" Type="DateTime" Precision="0" />
+    <Property Name="Bus_numberplate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Managers" Relationship="AlaskaExpressModel.FK__Manager__Bus_id__1A14E395" FromRole="Bus" ToRole="Manager" />
+    <NavigationProperty Name="Tickets" Relationship="AlaskaExpressModel.FK__Ticket__Bus_id__1B0907CE" FromRole="Bus" ToRole="Ticket" />
+  </EntityType>
+  <Association Name="FK__Manager__Bus_id__1A14E395">
+    <End Type="AlaskaExpressModel.Bus" Role="Bus" Multiplicity="0..1" />
+    <End Type="AlaskaExpressModel.Manager" Role="Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bus">
+        <PropertyRef Name="Bus_id" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="Bus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__Bus_id__1B0907CE">
+    <End Type="AlaskaExpressModel.Bus" Role="Bus" Multiplicity="0..1" />
+    <End Type="AlaskaExpressModel.Ticket" Role="Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bus">
+        <PropertyRef Name="Bus_id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Bus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Seat">
+    <Key>
+      <PropertyRef Name="Bus_id" />
+    </Key>
+    <Property Name="Bus_id" Type="Int32" Nullable="false" />
+    <Property Name="A1" Type="Int32" />
+    <Property Name="A2" Type="Int32" />
+    <Property Name="B1" Type="Int32" />
+    <Property Name="B2" Type="Int32" />
+    <Property Name="C1" Type="Int32" />
+    <Property Name="C2" Type="Int32" />
+    <Property Name="D1" Type="Int32" />
+    <Property Name="D2" Type="Int32" />
+    <Property Name="E1" Type="Int32" />
+    <Property Name="E2" Type="Int32" />
+    <Property Name="F1" Type="Int32" />
+    <Property Name="F2" Type="Int32" />
+    <Property Name="G1" Type="Int32" />
+    <Property Name="G2" Type="Int32" />
+    <Property Name="H1" Type="Int32" />
+    <Property Name="H2" Type="Int32" />
+  </EntityType>
 </Schema>

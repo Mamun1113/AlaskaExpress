@@ -24,8 +24,8 @@ namespace AlaskaExpress.Models
         public string Customer_email { get; set; }
         public string Seller_email { get; set; }
     
-        public virtual Bus Bus { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Seller Seller { get; set; }
+        public virtual Bus Bus { get; set; }
     }
 }

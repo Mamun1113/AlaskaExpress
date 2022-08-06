@@ -9,21 +9,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Buses">
-      <EntityTypeMapping TypeName="AlaskaExpressModel.Bus">
-        <MappingFragment StoreEntitySet="Bus">
-          <ScalarProperty Name="Bus_id" ColumnName="Bus_id" />
-          <ScalarProperty Name="Bus_start_location" ColumnName="Bus_start_location" />
-          <ScalarProperty Name="Bus_end_location" ColumnName="Bus_end_location" />
-          <ScalarProperty Name="Bus_total_seat" ColumnName="Bus_total_seat" />
-          <ScalarProperty Name="Bus_coach" ColumnName="Bus_coach" />
-          <ScalarProperty Name="Bus_cost_per_seat" ColumnName="Bus_cost_per_seat" />
-          <ScalarProperty Name="Bus_journey_time" ColumnName="Bus_journey_time" />
-          <ScalarProperty Name="Bus_journey_day" ColumnName="Bus_journey_day" />
-          <ScalarProperty Name="Bus_numberplate" ColumnName="Bus_numberplate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="AlaskaExpressModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
@@ -77,6 +62,44 @@
           <ScalarProperty Name="Bus_seats" ColumnName="Bus_seats" />
           <ScalarProperty Name="Buyer_name" ColumnName="Buyer_name" />
           <ScalarProperty Name="Buyer_phone" ColumnName="Buyer_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Buses">
+      <EntityTypeMapping TypeName="AlaskaExpressModel.Bus">
+        <MappingFragment StoreEntitySet="Bus">
+          <ScalarProperty Name="Bus_numberplate" ColumnName="Bus_numberplate" />
+          <ScalarProperty Name="Bus_journey_day" ColumnName="Bus_journey_day" />
+          <ScalarProperty Name="Bus_journey_time" ColumnName="Bus_journey_time" />
+          <ScalarProperty Name="Bus_cost_per_seat" ColumnName="Bus_cost_per_seat" />
+          <ScalarProperty Name="Bus_coach" ColumnName="Bus_coach" />
+          <ScalarProperty Name="Bus_total_seat" ColumnName="Bus_total_seat" />
+          <ScalarProperty Name="Bus_end_location" ColumnName="Bus_end_location" />
+          <ScalarProperty Name="Bus_start_location" ColumnName="Bus_start_location" />
+          <ScalarProperty Name="Bus_id" ColumnName="Bus_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seats">
+      <EntityTypeMapping TypeName="AlaskaExpressModel.Seat">
+        <MappingFragment StoreEntitySet="Seat">
+          <ScalarProperty Name="H2" ColumnName="H2" />
+          <ScalarProperty Name="H1" ColumnName="H1" />
+          <ScalarProperty Name="G2" ColumnName="G2" />
+          <ScalarProperty Name="G1" ColumnName="G1" />
+          <ScalarProperty Name="F2" ColumnName="F2" />
+          <ScalarProperty Name="F1" ColumnName="F1" />
+          <ScalarProperty Name="E2" ColumnName="E2" />
+          <ScalarProperty Name="E1" ColumnName="E1" />
+          <ScalarProperty Name="D2" ColumnName="D2" />
+          <ScalarProperty Name="D1" ColumnName="D1" />
+          <ScalarProperty Name="C2" ColumnName="C2" />
+          <ScalarProperty Name="C1" ColumnName="C1" />
+          <ScalarProperty Name="B2" ColumnName="B2" />
+          <ScalarProperty Name="B1" ColumnName="B1" />
+          <ScalarProperty Name="A2" ColumnName="A2" />
+          <ScalarProperty Name="A1" ColumnName="A1" />
+          <ScalarProperty Name="Bus_id" ColumnName="Bus_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

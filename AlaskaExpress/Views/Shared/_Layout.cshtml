@@ -47,52 +47,63 @@
                 <ul class="navbar-nav me-auto mb-2 position-absolute top-50 start-50 translate-middle">
 
                     <li class="nav-item">
-                        @if (ViewBag.Title == "Home")
+
+                        @if (Session["userEmail"] != null)
                         {
-                            <a class="nav-link active" href="/Home/">
-                                <b>Home</b>
-                                <span class="visually-hidden">(current)</span>
-                            </a>
+
+                            {
+                                <a class="nav-link" href="/@Session["userRole"].ToString()/Index">Home</a>
+                            }
                         }
                         else
                         {
-                            <a class="nav-link" href="/Home/">Home</a>
+                            if (ViewBag.Title == "Home")
+                            {
+                                <a class="nav-link active" href="/Home/">
+                                    <b>Home</b>
+                                    <span class="visually-hidden">(current)</span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="nav-link" href="/Home/">Home</a>
+                            }
                         }
                     </li>
                     &nbsp;
-
-                    <li class="nav-item">
-                        @if (ViewBag.Title == "BusDetails")
-                        {
-                            <a class="nav-link active" href="/Home/BusDetails">
-                                <b>Bus Details</b>
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="nav-link" href="/Home/BusDetails">Bus Details</a>
-                        }
-                    </li>
-
+                    <!--
+    <li class="nav-item">
+        @if (ViewBag.Title == "BusDetails")
+        {
+            <a class="nav-link active" href="/Home/BusDetails">
+                <b>Bus Details</b>
+                <span class="visually-hidden">(current)</span>
+            </a>
+        }
+        else
+        {
+            <a class="nav-link" href="/Home/BusDetails">Bus Details</a>
+        }
+    </li>
+        -->
                     &nbsp;
 
                     <!--
-                    <li class="nav-item">
-                        @if (ViewBag.Title == "TicketDownload")
-                        {
-                            <a class="nav-link active" href="/Home/TicketDownload">
-                                <b>Ticket Download</b>
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="nav-link" href="/Home/TicketDownload">Ticket Download</a>
-                        }
-                    </li>
-                    &nbsp;
-                        --->
+    <li class="nav-item">
+        @if (ViewBag.Title == "TicketDownload")
+        {
+            <a class="nav-link active" href="/Home/TicketDownload">
+                <b>Ticket Download</b>
+                <span class="visually-hidden">(current)</span>
+            </a>
+        }
+        else
+        {
+            <a class="nav-link" href="/Home/TicketDownload">Ticket Download</a>
+        }
+    </li>
+    &nbsp;
+        --->
 
 
                     <li class="nav-item">

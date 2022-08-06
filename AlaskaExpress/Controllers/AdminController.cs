@@ -12,7 +12,7 @@ namespace AlaskaExpress.Controllers
         private Models.AlaskaExpressEntities db = new AlaskaExpressEntities();
 
         // GET: Admins
-        public ActionResult ManagerList()
+        public ActionResult Index()
         {
             /*
              * List<Manager> managers = db.Managers.ToList();
@@ -42,7 +42,7 @@ namespace AlaskaExpress.Controllers
             {
                 db.Managers.Add(manager);
                 db.SaveChanges();
-                return RedirectToAction("ManagerList");
+                return RedirectToAction("Index");
             }
 
             return View();

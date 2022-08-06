@@ -17,7 +17,28 @@ namespace AlaskaExpress.Controllers
         // GET: Seller
         public ActionResult Index()
         {
-            return View(db.Sellers.ToList());
+            var sql = "SELECT * FROM Bus";
+            List<Bus> searchedBus = db.Buses.SqlQuery(sql).ToList();
+
+            List<string> startLocation = new List<string>();
+            List<string> endLocation = new List<string>();
+
+            foreach (var item in searchedBus)
+            {
+                if (!startLocation.Contains(item.Bus_start_location))
+                {
+                    startLocation.Add(item.Bus_start_location);
+                }
+
+                if (!endLocation.Contains(item.Bus_end_location))
+                {
+                    endLocation.Add(item.Bus_end_location);
+                }
+            }
+
+            ViewBag.startLocation = startLocation;
+            ViewBag.endLocation = endLocation;
+            return View();
         }
 
         // GET: Seller/Details/5

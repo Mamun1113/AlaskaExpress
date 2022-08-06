@@ -16,6 +16,12 @@ namespace AlaskaExpress.Controllers
     {
         private AlaskaExpressEntities db = new AlaskaExpressEntities();
 
+
+        static int addhoise = 0;
+        static int id;
+
+        static List<ButtonModel> btmodel = new List<ButtonModel>();
+
         // GET: Bus
         public ActionResult Index()
         {
@@ -36,10 +42,12 @@ namespace AlaskaExpress.Controllers
         {
             DateTime dateTime = Convert.ToDateTime(inputJourneyDate);
 
+            ViewBag.checkcheck = inputJourneyDate;
+
             //int week = Convert.ToInt32(dateTime.DayOfWeek);
             string day = Convert.ToString(dateTime.Day);
 
-            var sql = "SELECT * FROM Bus WHERE Bus_start_location= '" + inputJourneyFrom + "' AND Bus_end_location='" + inputJourneyTo + "'";
+            var sql = "SELECT * FROM Bus WHERE Bus_start_location= '" + inputJourneyFrom + "' AND Bus_end_location='" + inputJourneyTo + "' AND Bus_journey_day='" + inputJourneyDate + "' ";
             List<Bus> busDetails = db.Buses.SqlQuery(sql).ToList();
 
             if (busDetails.Count != 0)
@@ -48,7 +56,14 @@ namespace AlaskaExpress.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                if (Session["userEmail"] != null)
+                {
+                    return RedirectToAction("Index", "Seller");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
 
             }
             //return View(db.Buses.ToList());
@@ -86,10 +101,10 @@ namespace AlaskaExpress.Controllers
             {
                 db.Buses.Add(bus);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Manager");
             }
 
-            return View(bus);
+            return RedirectToAction("Index", "Manager");
         }
 
         public ActionResult AddBus()
@@ -178,6 +193,77 @@ namespace AlaskaExpress.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Seat(int idre)
+        {
+
+            if (Session["userEmail"] != null)
+            {
+                id = idre;
+                var sql = "SELECT * FROM Seat WHERE Bus_id= '" + idre + "'";
+
+
+                List<Seat> busSeats = db.Seats.SqlQuery(sql).ToList();
+                //addhoise = 1;
+                //Random random=new Random();
+                /*if(busSeats.Count==0)
+                 {
+                     return RedirectToAction("GetBus", "Home");
+                 }*/
+                /*for(int i=0;i<16;i++)
+                {
+                    int val = random.Next(10);
+                    btmodel.Add(new ButtonModel(val%3));
+
+                }*/
+                if (addhoise != idre)
+                {
+                    btmodel.Clear();
+                    btmodel.Add(new ButtonModel((int)busSeats[0].A1));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].A2));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].B1));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].B2));
+
+                    btmodel.Add(new ButtonModel((int)busSeats[0].C1));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].C2));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].D1));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].D2));
+
+                    btmodel.Add(new ButtonModel((int)busSeats[0].E1));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].E2));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].F1));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].F2));
+
+                    btmodel.Add(new ButtonModel((int)busSeats[0].G1));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].G2));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].H1));
+                    btmodel.Add(new ButtonModel((int)busSeats[0].H2));
+                    addhoise = idre;
+                }
+                return View("~/Views/Shared/Seat.cshtml", btmodel);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+
+        }
+
+        public ActionResult HandleSeatClick(string mine)
+        {
+            int stnnumber = Int32.Parse(mine);
+            if (btmodel[stnnumber].State == 2)
+            {
+                btmodel[stnnumber].State = 2;
+            }
+            else
+            {
+                btmodel[stnnumber].State = (btmodel[stnnumber].State ^ 1);
+            }
+
+            return View("~/Views/Shared/Seat.cshtml", btmodel);
         }
     }
 }

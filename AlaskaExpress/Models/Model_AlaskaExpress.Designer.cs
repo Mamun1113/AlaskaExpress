@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\AUST\AlaskaExpress\Models\Model_AlaskaExpress.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\Models\Model_AlaskaExpress.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
