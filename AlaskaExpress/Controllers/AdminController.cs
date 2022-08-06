@@ -1,18 +1,15 @@
-﻿using System;
+﻿using AlaskaExpress.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using AlaskaExpress.Models;
 
 namespace AlaskaExpress.Controllers
 {
     public class AdminController : Controller
     {
-        private AlaskaExpressEntities db = new AlaskaExpressEntities();
+        private Models.AlaskaExpressEntities db = new AlaskaExpressEntities();
 
         // GET: Admins
         public ActionResult ManagerList()
@@ -68,7 +65,7 @@ namespace AlaskaExpress.Controllers
             ViewBag.managers = db.Managers.ToList();
             return View();
         }
-        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

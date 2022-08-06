@@ -5,22 +5,48 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.UI;
 
 namespace AlaskaExpress.Controllers
 {
     public class HomeController : Controller
     {
-        AlaskaExpressEntities db = new AlaskaExpressEntities();
+        private AlaskaExpressEntities db = new AlaskaExpressEntities();
 
         public ActionResult Index()
         {
+
+            var sql = "SELECT * FROM Bus";
+            List<Bus> searchedBus = db.Buses.SqlQuery(sql).ToList();
+
+            List<string> startLocation = new List<string>();
+            List<string> endLocation = new List<string>();
+
+            foreach (var item in searchedBus)
+            {
+                if (!startLocation.Contains(item.Bus_start_location))
+                {
+                    startLocation.Add(item.Bus_start_location);
+                }
+
+                if (!endLocation.Contains(item.Bus_end_location))
+                {
+                    endLocation.Add(item.Bus_end_location);
+                }
+            }
+
+            ViewBag.startLocation = startLocation;
+            ViewBag.endLocation = endLocation;
             return View();
         }
 
         public ActionResult BusDetails()
         {
-            return View();
+            return RedirectToAction("BusDetails", "Bus");
         }
+
+
         public ActionResult TicketDownload()
         {
             return View();
@@ -43,12 +69,19 @@ namespace AlaskaExpress.Controllers
 
         public ActionResult Login()
         {
-            var sql = "SELECT * FROM Admin";
-            List<Admin> admin = db.Admins.SqlQuery(sql).ToList();
+            if (Session["userEmail"] != null)
+            {
+                return RedirectToAction("", "Home");
+            }
+            else
+            {
+                var sql = "SELECT * FROM Admin";
+                List<Admin> admin = db.Admins.SqlQuery(sql).ToList();
 
-            ViewBag.admin = admin;
+                ViewBag.admin = admin;
 
-            return View();
+                return View();
+            }
         }
 
         public ActionResult KillSession()
@@ -66,7 +99,6 @@ namespace AlaskaExpress.Controllers
                 var sellerDetails = db.Sellers.Where(user => user.Seller_email == inputEmailForSignin && user.Seller_password == inputPasswordForSignin).FirstOrDefault();
                 var customerDetails = db.Customers.Where(user => user.Customer_email == inputEmailForSignin && user.Customer_password == inputPasswordForSignin).FirstOrDefault();
 
-                //string s = ViewBag.s;
                 if (adminDetails != null)
                 {
                     Session["userEmail"] = adminDetails.Admin_email;
@@ -77,19 +109,19 @@ namespace AlaskaExpress.Controllers
                 {
                     Session["userEmail"] = managerDetails.Manager_email;
                     Session["userRole"] = "Manager";
-                    return RedirectToAction("Index", "Managers");
+                    return RedirectToAction("Index", "Manager");
                 }
                 else if (sellerDetails != null)
                 {
                     Session["userEmail"] = sellerDetails.Seller_email;
                     Session["userRole"] = "Seller";
-                    return RedirectToAction("Index", "Sellers");
+                    return RedirectToAction("Index", "Seller");
                 }
                 else if (customerDetails != null)
                 {
                     Session["userEmail"] = customerDetails.Customer_email;
                     Session["userRole"] = "Customer";
-                    return RedirectToAction("Index", "Customers");
+                    return RedirectToAction("Index", "Customer");
                 }
             }
 
@@ -108,20 +140,33 @@ namespace AlaskaExpress.Controllers
                 }
                 else if (customerDetails == null)
                 {
-                    SqlConnection con = new SqlConnection(@"Data Source=MEGATRONM609\SQLEXPRESS;Initial Catalog=AlaskaExpress; Integrated Security=True");
+                    System.Data.SqlClient.SqlConnection con = new SqlConnection(@"Data Source=MEGATRONM609\SQLEXPRESS;Initial Catalog=AlaskaExpress; Integrated Security=True");
                     SqlCommand sql;
                     con.Open();
 
-                    sql = new SqlCommand("insert into Customer values('"+inputEmailForSignup+ "','" + inputPasswordForSignup + "','" + inputFullnameForSignup + "','" + inputDobForSignup + "','" + inputGenderForSignup + "','" + inputAddressForSignup + "','" + inputPhoneForSignup + "', '" + inputNidForSignup + "')", con);
+                    sql = new SqlCommand("insert into Customer values('" + inputEmailForSignup + "','" + inputPasswordForSignup + "','" + inputFullnameForSignup + "','" + inputDobForSignup + "','" + inputGenderForSignup + "','" + inputAddressForSignup + "','" + inputPhoneForSignup + "', '" + inputNidForSignup + "')", con);
                     sql.ExecuteNonQuery();
                     con.Close();
 
-                    Session["userEmail"] = inputEmailForSignup;
+                    //Session["userEmail"] = inputEmailForSignup;
                     return RedirectToAction("Login", "Home");
                 }
             }
 
             return RedirectToAction("Signup", "Home");
         }
+    }
+}
+
+
+public static class MessageBox
+{
+    public static void Show(this Page Page, String Message)
+    {
+        Page.ClientScript.RegisterStartupScript(
+           Page.GetType(),
+           "MessageBox",
+           "<script language='javascript'>alert('" + Message + "');</script>"
+        );
     }
 }

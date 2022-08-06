@@ -11,12 +11,10 @@ namespace AlaskaExpress.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     
     public partial class Admin
     {
         public string Admin_email { get; set; }
-
         public string Admin_password { get; set; }
     }
 }

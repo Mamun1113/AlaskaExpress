@@ -1,0 +1,24 @@
+﻿@model AlaskaExpress.Models.Bus
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dropdown</title>
+</head>
+<body>
+    <div class="py-3">
+        @Html.DropDownListFor(model => model.Bus_id, new SelectList(Model.Buses, "Bus_id", "Bus_start_location", "Select") )
+    </div>
+
+    <div class="py-3">
+        <label for="inputJourneyTo" class="form-label">Destination location</label>
+        <input type="text" class="form-control" name="inputJourneyTo">
+    </div>
+</body>
+</html>

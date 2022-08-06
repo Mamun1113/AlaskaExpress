@@ -25,7 +25,7 @@
 
             <div class="py-3">
                 <label for="inputDobForSignup" class="form-label">Date of birth</label>
-                <input type="date" class="form-control" name="inputDobForSignup" placeholder="dd/mm/yyyy" required maxlength="0">
+                <input type="date" class="form-control" id="inputDobForSignup" name="inputDobForSignup" placeholder="dd/mm/yyyy" required minlength="0">
             </div>
 
             <div class="py-3">
@@ -73,3 +73,16 @@
 <br>
 <br>
 <br>
+
+<script>
+
+    //disable old dates
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#inputDobForSignup').attr('max', today);
+
+</script>

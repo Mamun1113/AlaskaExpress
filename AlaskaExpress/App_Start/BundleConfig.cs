@@ -23,7 +23,7 @@ namespace AlaskaExpress
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-Flatly.css",
+                      "~/Content/bootstrap-flatly.css",
                       "~/Content/site.css"));
         }
     }

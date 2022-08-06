@@ -11,29 +11,17 @@ namespace AlaskaExpress.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Manager
     {
-        [DisplayName("Manager's Email")]
-        [DataType(DataType.EmailAddress)]
         public string Manager_email { get; set; }
-
-        [DisplayName("Manager's Password")]
-        [DataType(DataType.Password)]
         public string Manager_password { get; set; }
-
-        [DisplayName("Manager's Fullname")]
         public string Manager_fullname { get; set; }
-
-        [DisplayName("Manager's Address")]
         public string Manager_address { get; set; }
-
-        [DisplayName("Manager's NID")]
         public string Manager_nid { get; set; }
-
-        [DisplayName("Manager's Phone")]
         public string Manager_phone { get; set; }
+        public Nullable<int> Bus_id { get; set; }
+    
+        public virtual Bus Bus { get; set; }
     }
 }
