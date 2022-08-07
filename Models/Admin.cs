@@ -16,8 +16,5 @@ namespace AlaskaExpress.Models
     {
         public string Admin_email { get; set; }
         public string Admin_password { get; set; }
-
-        
-
     }
 }

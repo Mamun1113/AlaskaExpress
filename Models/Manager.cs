@@ -20,5 +20,8 @@ namespace AlaskaExpress.Models
         public string Manager_address { get; set; }
         public string Manager_nid { get; set; }
         public string Manager_phone { get; set; }
+        public Nullable<int> Bus_id { get; set; }
+    
+        public virtual Bus Bus { get; set; }
     }
 }

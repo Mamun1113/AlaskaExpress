@@ -1,158 +1,247 @@
 ﻿using AlaskaExpress.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.UI;
 
 namespace AlaskaExpress.Controllers
 {
     public class HomeController : Controller
     {
-        AlaskaExpressEntities db = new AlaskaExpressEntities();
+        private AlaskaExpressEntities db = new AlaskaExpressEntities();
+        /*
+        static int addhoise = 0;
+        static int id;
+
+        static List<ButtonModel> btmodel = new List<ButtonModel>();
+
+        */
 
         public ActionResult Index()
+        {
+
+            var sql = "SELECT * FROM Bus";
+            List<Bus> searchedBus = db.Buses.SqlQuery(sql).ToList();
+
+            List<string> startLocation = new List<string>();
+            List<string> endLocation = new List<string>();
+
+            foreach (var item in searchedBus)
+            {
+                if (!startLocation.Contains(item.Bus_start_location))
+                {
+                    startLocation.Add(item.Bus_start_location);
+                }
+
+                if (!endLocation.Contains(item.Bus_end_location))
+                {
+                    endLocation.Add(item.Bus_end_location);
+                }
+            }
+
+            ViewBag.startLocation = startLocation;
+            ViewBag.endLocation = endLocation;
+            return View();
+        }
+
+        public ActionResult BusDetails()
+        {
+            return RedirectToAction("BusDetails", "Bus");
+        }
+
+
+        public ActionResult TicketDownload()
         {
             return View();
         }
 
-
-        public ActionResult GetBus(string fromJourney, string toJourney, string journeyDate)
-        {
-
-            var sql = "SELECT * FROM BusDetails WHERE busFrom= '" + fromJourney + "' AND busTo='" + toJourney + "' AND journeyDate='" + journeyDate + "'";
-            List<BusDetail> busDetails = db.BusDetails.SqlQuery(sql).ToList();
-
-            if (!isValidDate(journeyDate) || !isValidPlace(fromJourney) || !isValidPlace(toJourney) || fromJourney==toJourney)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else if(busDetails.Count!=0)
-            {
-                return View("GetBus", busDetails);
-               
-            }
-            else
-            {
-
-                return RedirectToAction("Index", "Home");
-
-            }
-            //Lisu
-            /*ViewBag.fromJourney = fromJourney;
-            ViewBag.toJourney = toJourney;
-            ViewBag.journeyDate = journeyDate;
-
-            using (AlaskaExpressEntities db = new AlaskaExpressEntities())
-            {
-                var BusDetails = db.BusDetails.Where(user => user.busFrom == fromJourney && user.busTo == toJourney && user.journeyDate==journeyDate).FirstOrDefault();
-
-                if (BusDetails != null)
-                {
-                    var sql1 = "SELECT * FROM BusDetails where busFrom='" + fromJourney + "'";
-                    List<BusDetail> busdet = db.BusDetails.SqlQuery(sql1).ToList();
-                    return View("GetBus", busdet);
-                }
-            }*/
-
-        }
-
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
         public ActionResult Signup()
         {
-            
-            ViewBag.Message = "Your Signup page.";
-
             return View();
         }
 
         public ActionResult Login()
         {
-            var sql = "SELECT * FROM Admin";
-            List<Admin> admin = db.Admins.SqlQuery(sql).ToList();
+            if (Session["userEmail"] != null)
+            {
+                return RedirectToAction("", "Home");
+            }
+            else
+            {
+                var sql = "SELECT * FROM Admin";
+                List<Admin> admin = db.Admins.SqlQuery(sql).ToList();
 
-            ViewBag.admin = admin;
+                ViewBag.admin = admin;
 
-            return View();
+                return View();
+            }
         }
 
-        [HttpPost]
-        public ActionResult Login(Admin admin)
+        public ActionResult KillSession()
         {
-            return View();
+            Session.RemoveAll();
+            return RedirectToAction("", "Home");
         }
 
-        public ActionResult AuthorizeAdmin(string inputEmailForSignin, string inputPasswordForSignin)
+        public ActionResult AuthorizeLogin(string inputEmailForSignin, string inputPasswordForSignin, string inputRoleForSignin)
         {
-
-            ViewBag.emailForSignin = inputEmailForSignin;
-            ViewBag.passwordForSignin = inputPasswordForSignin;
-
             using (AlaskaExpressEntities db = new AlaskaExpressEntities())
             {
                 var adminDetails = db.Admins.Where(user => user.Admin_email == inputEmailForSignin && user.Admin_password == inputPasswordForSignin).FirstOrDefault();
+                var managerDetails = db.Managers.Where(user => user.Manager_email == inputEmailForSignin && user.Manager_password == inputPasswordForSignin).FirstOrDefault();
+                var sellerDetails = db.Sellers.Where(user => user.Seller_email == inputEmailForSignin && user.Seller_password == inputPasswordForSignin).FirstOrDefault();
+                var customerDetails = db.Customers.Where(user => user.Customer_email == inputEmailForSignin && user.Customer_password == inputPasswordForSignin).FirstOrDefault();
 
                 if (adminDetails != null)
                 {
                     Session["userEmail"] = adminDetails.Admin_email;
-                    return RedirectToAction("ManagerUpdate", "Admin");
+                    Session["userRole"] = "Admin";
+                    return RedirectToAction("Index", "Admin");
+                }
+                else if (managerDetails != null)
+                {
+                    Session["userEmail"] = managerDetails.Manager_email;
+                    Session["userRole"] = "Manager";
+                    return RedirectToAction("Index", "Manager");
+                }
+                else if (sellerDetails != null)
+                {
+                    Session["userEmail"] = sellerDetails.Seller_email;
+                    Session["userRole"] = "Seller";
+                    return RedirectToAction("Index", "Seller");
+                }
+                else if (customerDetails != null)
+                {
+                    Session["userEmail"] = customerDetails.Customer_email;
+                    Session["userRole"] = "Customer";
+                    return RedirectToAction("Index", "Home");
                 }
             }
-
-            ViewBag.test = "try";
 
             return RedirectToAction("Login", "Home");
         }
 
-        public Boolean isValidPlace(string s)
+        public ActionResult AuthorizeSignup(string inputFullnameForSignup, string inputPhoneForSignup, string inputDobForSignup, string inputGenderForSignup, string inputNidForSignup, string inputAddressForSignup, string inputEmailForSignup, string inputPasswordForSignup)
         {
-            if (s == "Dhaka" || s == "dhaka") return true;
-            if (s == "Chittagoan" || s == "chittagoan") return true;
-            if (s == "Rajshahi" || s == "rajshahi") return true;
-            if (s == "Khulna" || s == "khulna") return true;
-            if (s == "Barisal" || s == "barisal") return true;
-            if (s == "Sylhet" || s == "sylhet") return true;
-            if (s == "Rangpur" || s == "rangpur") return true;
-            return false;
+            using (AlaskaExpressEntities db = new AlaskaExpressEntities())
+            {
+                var customerDetails = db.Customers.Where(user => user.Customer_email == inputEmailForSignup).FirstOrDefault();
+
+                if (customerDetails != null)
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                else if (customerDetails == null)
+                {
+                    System.Data.SqlClient.SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AMGVCS3\SQLEXPRESS;Initial Catalog=AlaskaExpress; Integrated Security=True");
+                    SqlCommand sql;
+                    con.Open();
+
+                    sql = new SqlCommand("insert into Customer values('" + inputEmailForSignup + "','" + inputPasswordForSignup + "','" + inputFullnameForSignup + "','" + inputDobForSignup + "','" + inputGenderForSignup + "','" + inputAddressForSignup + "','" + inputPhoneForSignup + "', '" + inputNidForSignup + "')", con);
+                    sql.ExecuteNonQuery();
+                    con.Close();
+
+                    //Session["userEmail"] = inputEmailForSignup;
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+
+            return RedirectToAction("Signup", "Home");
+        }
+        
+
+        /*
+        public ActionResult Seat(int idre)
+        {
+            id = idre;
+            var sql = "SELECT * FROM Seat WHERE Bus_id= '" + idre + "'";
+
+
+            List<Seat> busSeats = db.Seats.SqlQuery(sql).ToList();
+            //addhoise = 1;
+            //Random random=new Random();
+            /*if(busSeats.Count==0)
+             {
+                 return RedirectToAction("GetBus", "Home");
+             }*/
+            /*for(int i=0;i<16;i++)
+            {
+                int val = random.Next(10);
+                btmodel.Add(new ButtonModel(val%3));
+
+            }*/
+
+        /*
+            if (addhoise != idre)
+            {
+                btmodel.Clear();
+                btmodel.Add(new ButtonModel((int)busSeats[0].A1));
+                btmodel.Add(new ButtonModel((int)busSeats[0].A2));
+                btmodel.Add(new ButtonModel((int)busSeats[0].B1));
+                btmodel.Add(new ButtonModel((int)busSeats[0].B2));
+
+                btmodel.Add(new ButtonModel((int)busSeats[0].C1));
+                btmodel.Add(new ButtonModel((int)busSeats[0].C2));
+                btmodel.Add(new ButtonModel((int)busSeats[0].D1));
+                btmodel.Add(new ButtonModel((int)busSeats[0].A1));
+
+                btmodel.Add(new ButtonModel((int)busSeats[0].E1));
+                btmodel.Add(new ButtonModel((int)busSeats[0].E2));
+                btmodel.Add(new ButtonModel((int)busSeats[0].F1));
+                btmodel.Add(new ButtonModel((int)busSeats[0].F2));
+
+                btmodel.Add(new ButtonModel((int)busSeats[0].G1));
+                btmodel.Add(new ButtonModel((int)busSeats[0].A1));
+                btmodel.Add(new ButtonModel((int)busSeats[0].H1));
+                btmodel.Add(new ButtonModel((int)busSeats[0].H2));
+                addhoise = idre;
+            }
+
+            return View("~/Views/Shared/Seat.cshtml", btmodel);
         }
 
-        public Boolean isValidDate(string s)
+        public ActionResult HandleSeatClick(string mine)
         {
-            if (s.Length != 10) return false;
-            for (int i = 0; i < 2; i++)
+            int stnnumber = Int32.Parse(mine);
+            if (btmodel[stnnumber].State == 2)
             {
-                if (!isNumber(s[i])) return false;
+                btmodel[stnnumber].State = 2;
             }
-            if (s[2] != '/') return false;
-            for (int i = 3; i < 5; i++)
+            else
             {
-                if (!isNumber(s[i])) return false;
+                btmodel[stnnumber].State = (btmodel[stnnumber].State ^ 1);
             }
-            if (s[5] != '/') return false;
-            for (int i = 6; i < 10; i++)
-            {
-                if (!isNumber(s[i])) return false;
-            }
-            return true;
-        }
 
-        public Boolean isNumber(char c)
-        {
-            if (c < '0' || c > '9') return false;
-            return true;
+            return View("~/Views/Shared/Seat.cshtml", btmodel);
         }
+*/
+
+    }
+}
+
+
+public static class MessageBox
+{
+    public static void Show(this Page Page, String Message)
+    {
+        Page.ClientScript.RegisterStartupScript(
+           Page.GetType(),
+           "MessageBox",
+           "<script language='javascript'>alert('" + Message + "');</script>"
+        );
     }
 }

@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlaskaExpressModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_email" />
+    </Key>
+    <Property Name="Admin_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Admin_password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bus">
+    <Key>
+      <PropertyRef Name="Bus_id" />
+    </Key>
+    <Property Name="Bus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bus_start_location" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bus_end_location" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bus_total_seat" Type="int" Nullable="false" />
+    <Property Name="Bus_coach" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bus_cost_per_seat" Type="int" Nullable="false" />
+    <Property Name="Bus_journey_time" Type="varchar" MaxLength="50" />
+    <Property Name="Bus_journey_day" Type="date" />
+    <Property Name="Bus_numberplate" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Customer_email" />
+    </Key>
+    <Property Name="Customer_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Customer_password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Customer_fullname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Customer_dob" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Customer_gender" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Customer_address" Type="varchar(max)" Nullable="false" />
+    <Property Name="Customer_phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Customer_nid" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Manager_email" />
+    </Key>
+    <Property Name="Manager_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Manager_password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Manager_fullname" Type="varchar" MaxLength="50" />
+    <Property Name="Manager_address" Type="varchar(max)" />
+    <Property Name="Manager_nid" Type="varchar" MaxLength="50" />
+    <Property Name="Manager_phone" Type="varchar" MaxLength="50" />
+    <Property Name="Bus_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Seat">
+    <Key>
+      <PropertyRef Name="Bus_id" />
+    </Key>
+    <Property Name="Bus_id" Type="int" Nullable="false" />
+    <Property Name="A1" Type="int" />
+    <Property Name="A2" Type="int" />
+    <Property Name="B1" Type="int" />
+    <Property Name="B2" Type="int" />
+    <Property Name="C1" Type="int" />
+    <Property Name="C2" Type="int" />
+    <Property Name="D1" Type="int" />
+    <Property Name="D2" Type="int" />
+    <Property Name="E1" Type="int" />
+    <Property Name="E2" Type="int" />
+    <Property Name="F1" Type="int" />
+    <Property Name="F2" Type="int" />
+    <Property Name="G1" Type="int" />
+    <Property Name="G2" Type="int" />
+    <Property Name="H1" Type="int" />
+    <Property Name="H2" Type="int" />
+  </EntityType>
+  <EntityType Name="Seller">
+    <Key>
+      <PropertyRef Name="Seller_email" />
+    </Key>
+    <Property Name="Seller_email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Seller_password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Seller_fullname" Type="varchar" MaxLength="50" />
+    <Property Name="Seller_address" Type="varchar(max)" />
+    <Property Name="Seller_nid" Type="varchar" MaxLength="50" />
+    <Property Name="Seller_phone" Type="varchar" MaxLength="50" />
+    <Property Name="Seller_image" Type="varchar(max)" />
+    <Property Name="Seller_addedby" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="Ticket_id" />
+    </Key>
+    <Property Name="Ticket_id" Type="bigint" Nullable="false" />
+    <Property Name="Ticket_date" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ticket_time" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bus_seats" Type="varchar(max)" Nullable="false" />
+    <Property Name="Buyer_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Buyer_phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Bus_id" Type="int" />
+    <Property Name="Customer_email" Type="varchar" MaxLength="50" />
+    <Property Name="Seller_email" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Manager__Bus_id__09DE7BCC">
+    <End Role="Bus" Type="Self.Bus" Multiplicity="0..1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bus">
+        <PropertyRef Name="Bus_id" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="Bus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__Bus_id__0AD2A005">
+    <End Role="Bus" Type="Self.Bus" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bus">
+        <PropertyRef Name="Bus_id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Bus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__Customer__0BC6C43E">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_email" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Customer_email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__Seller_e__0CBAE877">
+    <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="Seller_email" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="Seller_email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AlaskaExpressModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bus" EntityType="Self.Bus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seat" EntityType="Self.Seat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Manager__Bus_id__09DE7BCC" Association="Self.FK__Manager__Bus_id__09DE7BCC">
+      <End Role="Bus" EntitySet="Bus" />
+      <End Role="Manager" EntitySet="Manager" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__Bus_id__0AD2A005" Association="Self.FK__Ticket__Bus_id__0AD2A005">
+      <End Role="Bus" EntitySet="Bus" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__Customer__0BC6C43E" Association="Self.FK__Ticket__Customer__0BC6C43E">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__Seller_e__0CBAE877" Association="Self.FK__Ticket__Seller_e__0CBAE877">
+      <End Role="Seller" EntitySet="Seller" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
