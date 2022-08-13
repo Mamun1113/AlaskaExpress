@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AlaskaExpressModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_email" />
+          </Key>
+          <Property Name="Admin_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Admin_password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bus">
+          <Key>
+            <PropertyRef Name="Bus_id" />
+          </Key>
+          <Property Name="Bus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bus_start_location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bus_end_location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bus_total_seat" Type="int" Nullable="false" />
+          <Property Name="Bus_coach" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bus_cost_per_seat" Type="int" Nullable="false" />
+          <Property Name="Bus_journey_time" Type="varchar" MaxLength="50" />
+          <Property Name="Bus_journey_day" Type="date" />
+          <Property Name="Bus_numberplate" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customer_email" />
+          </Key>
+          <Property Name="Customer_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_fullname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_dob" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_address" Type="varchar(max)" Nullable="false" />
+          <Property Name="Customer_phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Customer_nid" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="Manager_email" />
+          </Key>
+          <Property Name="Manager_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manager_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manager_fullname" Type="varchar" MaxLength="50" />
+          <Property Name="Manager_address" Type="varchar(max)" />
+          <Property Name="Manager_nid" Type="varchar" MaxLength="50" />
+          <Property Name="Manager_phone" Type="varchar" MaxLength="50" />
+          <Property Name="Bus_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Seat">
+          <Key>
+            <PropertyRef Name="Bus_id" />
+          </Key>
+          <Property Name="Bus_id" Type="int" Nullable="false" />
+          <Property Name="A1" Type="int" />
+          <Property Name="A2" Type="int" />
+          <Property Name="B1" Type="int" />
+          <Property Name="B2" Type="int" />
+          <Property Name="C1" Type="int" />
+          <Property Name="C2" Type="int" />
+          <Property Name="D1" Type="int" />
+          <Property Name="D2" Type="int" />
+          <Property Name="E1" Type="int" />
+          <Property Name="E2" Type="int" />
+          <Property Name="F1" Type="int" />
+          <Property Name="F2" Type="int" />
+          <Property Name="G1" Type="int" />
+          <Property Name="G2" Type="int" />
+          <Property Name="H1" Type="int" />
+          <Property Name="H2" Type="int" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="Seller_email" />
+          </Key>
+          <Property Name="Seller_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Seller_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Seller_fullname" Type="varchar" MaxLength="50" />
+          <Property Name="Seller_address" Type="varchar(max)" />
+          <Property Name="Seller_nid" Type="varchar" MaxLength="50" />
+          <Property Name="Seller_phone" Type="varchar" MaxLength="50" />
+          <Property Name="Seller_image" Type="varchar(max)" />
+          <Property Name="Seller_addedby" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Ticket_id" />
+          </Key>
+          <Property Name="Ticket_id" Type="bigint" Nullable="false" />
+          <Property Name="Ticket_date" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ticket_time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bus_seats" Type="varchar(max)" Nullable="false" />
+          <Property Name="Buyer_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Buyer_phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bus_id" Type="int" />
+          <Property Name="Customer_email" Type="varchar" MaxLength="50" />
+          <Property Name="Seller_email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Manager__Bus_id__09DE7BCC">
+          <End Role="Bus" Type="Self.Bus" Multiplicity="0..1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bus">
+              <PropertyRef Name="Bus_id" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="Bus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Bus_id__0AD2A005">
+          <End Role="Bus" Type="Self.Bus" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bus">
+              <PropertyRef Name="Bus_id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Bus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Customer__0BC6C43E">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_email" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Customer_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Seller_e__0CBAE877">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="Seller_email" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Seller_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlaskaExpressModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bus" EntityType="Self.Bus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seat" EntityType="Self.Seat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Manager__Bus_id__09DE7BCC" Association="Self.FK__Manager__Bus_id__09DE7BCC">
+            <End Role="Bus" EntitySet="Bus" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Bus_id__0AD2A005" Association="Self.FK__Ticket__Bus_id__0AD2A005">
+            <End Role="Bus" EntitySet="Bus" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Customer__0BC6C43E" Association="Self.FK__Ticket__Customer__0BC6C43E">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Seller_e__0CBAE877" Association="Self.FK__Ticket__Seller_e__0CBAE877">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlaskaExpressModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_email" />
+          </Key>
+          <Property Name="Admin_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Admin_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bus">
+          <Key>
+            <PropertyRef Name="Bus_id" />
+          </Key>
+          <Property Name="Bus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bus_start_location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bus_end_location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bus_total_seat" Type="Int32" Nullable="false" />
+          <Property Name="Bus_coach" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bus_cost_per_seat" Type="Int32" Nullable="false" />
+          <Property Name="Bus_journey_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Bus_journey_day" Type="DateTime" Precision="0" />
+          <Property Name="Bus_numberplate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Managers" Relationship="Self.FK__Manager__Bus_id__09DE7BCC" FromRole="Bus" ToRole="Manager" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__Bus_id__0AD2A005" FromRole="Bus" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customer_email" />
+          </Key>
+          <Property Name="Customer_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_dob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__Customer__0BC6C43E" FromRole="Customer" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="Manager_email" />
+          </Key>
+          <Property Name="Manager_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manager_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manager_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Manager_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Manager_nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Manager_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Bus_id" Type="Int32" />
+          <NavigationProperty Name="Bus" Relationship="Self.FK__Manager__Bus_id__09DE7BCC" FromRole="Manager" ToRole="Bus" />
+        </EntityType>
+        <EntityType Name="Seat">
+          <Key>
+            <PropertyRef Name="Bus_id" />
+          </Key>
+          <Property Name="Bus_id" Type="Int32" Nullable="false" />
+          <Property Name="A1" Type="Int32" />
+          <Property Name="A2" Type="Int32" />
+          <Property Name="B1" Type="Int32" />
+          <Property Name="B2" Type="Int32" />
+          <Property Name="C1" Type="Int32" />
+          <Property Name="C2" Type="Int32" />
+          <Property Name="D1" Type="Int32" />
+          <Property Name="D2" Type="Int32" />
+          <Property Name="E1" Type="Int32" />
+          <Property Name="E2" Type="Int32" />
+          <Property Name="F1" Type="Int32" />
+          <Property Name="F2" Type="Int32" />
+          <Property Name="G1" Type="Int32" />
+          <Property Name="G2" Type="Int32" />
+          <Property Name="H1" Type="Int32" />
+          <Property Name="H2" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="Seller_email" />
+          </Key>
+          <Property Name="Seller_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Seller_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Seller_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seller_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Seller_nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seller_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seller_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Seller_addedby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__Seller_e__0CBAE877" FromRole="Seller" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Ticket_id" />
+          </Key>
+          <Property Name="Ticket_id" Type="Int64" Nullable="false" />
+          <Property Name="Ticket_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ticket_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bus_seats" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Buyer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Buyer_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bus_id" Type="Int32" />
+          <Property Name="Customer_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seller_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bus" Relationship="Self.FK__Ticket__Bus_id__0AD2A005" FromRole="Ticket" ToRole="Bus" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Ticket__Customer__0BC6C43E" FromRole="Ticket" ToRole="Customer" />
+          <NavigationProperty Name="Seller" Relationship="Self.FK__Ticket__Seller_e__0CBAE877" FromRole="Ticket" ToRole="Seller" />
+        </EntityType>
+        <Association Name="FK__Manager__Bus_id__09DE7BCC">
+          <End Role="Bus" Type="Self.Bus" Multiplicity="0..1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bus">
+              <PropertyRef Name="Bus_id" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="Bus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Bus_id__0AD2A005">
+          <End Role="Bus" Type="Self.Bus" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bus">
+              <PropertyRef Name="Bus_id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Bus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Customer__0BC6C43E">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_email" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Customer_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Seller_e__0CBAE877">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="Seller_email" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Seller_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlaskaExpressEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Buses" EntityType="Self.Bus" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Managers" EntityType="Self.Manager" />
+          <EntitySet Name="Seats" EntityType="Self.Seat" />
+          <EntitySet Name="Sellers" EntityType="Self.Seller" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <AssociationSet Name="FK__Manager__Bus_id__09DE7BCC" Association="Self.FK__Manager__Bus_id__09DE7BCC">
+            <End Role="Bus" EntitySet="Buses" />
+            <End Role="Manager" EntitySet="Managers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Bus_id__0AD2A005" Association="Self.FK__Ticket__Bus_id__0AD2A005">
+            <End Role="Bus" EntitySet="Buses" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Customer__0BC6C43E" Association="Self.FK__Ticket__Customer__0BC6C43E">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Seller_e__0CBAE877" Association="Self.FK__Ticket__Seller_e__0CBAE877">
+            <End Role="Seller" EntitySet="Sellers" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlaskaExpressModelStoreContainer" CdmEntityContainer="AlaskaExpressEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Admin_email" ColumnName="Admin_email" />
+                <ScalarProperty Name="Admin_password" ColumnName="Admin_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buses">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.Bus">
+              <MappingFragment StoreEntitySet="Bus">
+                <ScalarProperty Name="Bus_id" ColumnName="Bus_id" />
+                <ScalarProperty Name="Bus_start_location" ColumnName="Bus_start_location" />
+                <ScalarProperty Name="Bus_end_location" ColumnName="Bus_end_location" />
+                <ScalarProperty Name="Bus_total_seat" ColumnName="Bus_total_seat" />
+                <ScalarProperty Name="Bus_coach" ColumnName="Bus_coach" />
+                <ScalarProperty Name="Bus_cost_per_seat" ColumnName="Bus_cost_per_seat" />
+                <ScalarProperty Name="Bus_journey_time" ColumnName="Bus_journey_time" />
+                <ScalarProperty Name="Bus_journey_day" ColumnName="Bus_journey_day" />
+                <ScalarProperty Name="Bus_numberplate" ColumnName="Bus_numberplate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Customer_email" ColumnName="Customer_email" />
+                <ScalarProperty Name="Customer_password" ColumnName="Customer_password" />
+                <ScalarProperty Name="Customer_fullname" ColumnName="Customer_fullname" />
+                <ScalarProperty Name="Customer_dob" ColumnName="Customer_dob" />
+                <ScalarProperty Name="Customer_gender" ColumnName="Customer_gender" />
+                <ScalarProperty Name="Customer_address" ColumnName="Customer_address" />
+                <ScalarProperty Name="Customer_phone" ColumnName="Customer_phone" />
+                <ScalarProperty Name="Customer_nid" ColumnName="Customer_nid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="Manager_email" ColumnName="Manager_email" />
+                <ScalarProperty Name="Manager_password" ColumnName="Manager_password" />
+                <ScalarProperty Name="Manager_fullname" ColumnName="Manager_fullname" />
+                <ScalarProperty Name="Manager_address" ColumnName="Manager_address" />
+                <ScalarProperty Name="Manager_nid" ColumnName="Manager_nid" />
+                <ScalarProperty Name="Manager_phone" ColumnName="Manager_phone" />
+                <ScalarProperty Name="Bus_id" ColumnName="Bus_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seats">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.Seat">
+              <MappingFragment StoreEntitySet="Seat">
+                <ScalarProperty Name="Bus_id" ColumnName="Bus_id" />
+                <ScalarProperty Name="A1" ColumnName="A1" />
+                <ScalarProperty Name="A2" ColumnName="A2" />
+                <ScalarProperty Name="B1" ColumnName="B1" />
+                <ScalarProperty Name="B2" ColumnName="B2" />
+                <ScalarProperty Name="C1" ColumnName="C1" />
+                <ScalarProperty Name="C2" ColumnName="C2" />
+                <ScalarProperty Name="D1" ColumnName="D1" />
+                <ScalarProperty Name="D2" ColumnName="D2" />
+                <ScalarProperty Name="E1" ColumnName="E1" />
+                <ScalarProperty Name="E2" ColumnName="E2" />
+                <ScalarProperty Name="F1" ColumnName="F1" />
+                <ScalarProperty Name="F2" ColumnName="F2" />
+                <ScalarProperty Name="G1" ColumnName="G1" />
+                <ScalarProperty Name="G2" ColumnName="G2" />
+                <ScalarProperty Name="H1" ColumnName="H1" />
+                <ScalarProperty Name="H2" ColumnName="H2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sellers">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.Seller">
+              <MappingFragment StoreEntitySet="Seller">
+                <ScalarProperty Name="Seller_email" ColumnName="Seller_email" />
+                <ScalarProperty Name="Seller_password" ColumnName="Seller_password" />
+                <ScalarProperty Name="Seller_fullname" ColumnName="Seller_fullname" />
+                <ScalarProperty Name="Seller_address" ColumnName="Seller_address" />
+                <ScalarProperty Name="Seller_nid" ColumnName="Seller_nid" />
+                <ScalarProperty Name="Seller_phone" ColumnName="Seller_phone" />
+                <ScalarProperty Name="Seller_image" ColumnName="Seller_image" />
+                <ScalarProperty Name="Seller_addedby" ColumnName="Seller_addedby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="AlaskaExpressModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="Ticket_id" ColumnName="Ticket_id" />
+                <ScalarProperty Name="Ticket_date" ColumnName="Ticket_date" />
+                <ScalarProperty Name="Ticket_time" ColumnName="Ticket_time" />
+                <ScalarProperty Name="Bus_seats" ColumnName="Bus_seats" />
+                <ScalarProperty Name="Buyer_name" ColumnName="Buyer_name" />
+                <ScalarProperty Name="Buyer_phone" ColumnName="Buyer_phone" />
+                <ScalarProperty Name="Bus_id" ColumnName="Bus_id" />
+                <ScalarProperty Name="Customer_email" ColumnName="Customer_email" />
+                <ScalarProperty Name="Seller_email" ColumnName="Seller_email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

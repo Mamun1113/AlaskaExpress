@@ -1,0 +1,75 @@
+﻿@model IEnumerable<AlaskaExpress.Models.Seller>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row mx-5">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller_password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller_fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller_address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller_nid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller_phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller_image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller_addedby)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller_password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller_fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller_address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller_nid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller_phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller_image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller_addedby)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Seller_email }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Seller_email }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Seller_email })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+</div>

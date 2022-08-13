@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaExpress", "AlaskaExpress.csproj", "{81130D91-8902-4517-8CB3-8C6013D5377A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlaskaExpress", "AlaskaExpress.csproj", "{FE32DB68-A23D-49C6-B872-7F0305D8005E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{81130D91-8902-4517-8CB3-8C6013D5377A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81130D91-8902-4517-8CB3-8C6013D5377A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81130D91-8902-4517-8CB3-8C6013D5377A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81130D91-8902-4517-8CB3-8C6013D5377A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE32DB68-A23D-49C6-B872-7F0305D8005E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE32DB68-A23D-49C6-B872-7F0305D8005E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE32DB68-A23D-49C6-B872-7F0305D8005E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE32DB68-A23D-49C6-B872-7F0305D8005E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E38370EA-664D-403C-8E4A-FA602EF2A63E}
+		SolutionGuid = {B153B2C1-A3D4-4B73-A1F3-DB51BD65B330}
 	EndGlobalSection
 EndGlobal

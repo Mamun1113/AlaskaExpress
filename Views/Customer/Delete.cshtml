@@ -1,0 +1,80 @@
+﻿@model AlaskaExpress.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_dob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_dob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_nid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_nid)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
