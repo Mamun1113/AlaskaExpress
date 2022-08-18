@@ -17,13 +17,90 @@ namespace AlaskaExpress.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            return View();
         }
 
-        public ActionResult AllCustomers()
+        public ActionResult FindBus()
         {
-            return View(db.Customers.ToList());
+            var sql = "SELECT * FROM Schedule";
+            List<Schedule> searchedBus = db.Schedules.SqlQuery(sql).ToList();
+
+            List<string> startLocation = new List<string>();
+            List<string> endLocation = new List<string>();
+
+            foreach (var item in searchedBus)
+            {
+                if (!startLocation.Contains(item.Bus.Bus_start_location))
+                {
+                    startLocation.Add(item.Bus.Bus_start_location);
+                }
+
+                if (!endLocation.Contains(item.Bus.Bus_end_location))
+                {
+                    endLocation.Add(item.Bus.Bus_end_location);
+                }
+            }
+
+            ViewBag.startLocation = startLocation;
+            ViewBag.endLocation = endLocation;
+            return View();
         }
+
+        public ActionResult SearchedBus(string inputJourneyFrom, string inputJourneyTo, string inputJourneyDate)
+        {
+            var sql = "SELECT * FROM Schedule INNER JOIN Bus ON Schedule.Bus_id = Bus.Bus_id WHERE Bus_start_location= '" + inputJourneyFrom + "' AND Bus_end_location='" + inputJourneyTo + "' AND Bus_journet_day='" + inputJourneyDate + "' ";
+            List<Schedule> busDetails = db.Schedules.SqlQuery(sql).ToList();
+
+            if (busDetails.Count != 0)
+            {
+                return View("SearchedBus", busDetails);
+            }
+            else
+            {
+                Response.Write("<script>alert('No bus found');</script>");
+
+                var sql2 = "SELECT * FROM Schedule";
+                List<Schedule> searchedBus = db.Schedules.SqlQuery(sql2).ToList();
+
+                List<string> startLocation = new List<string>();
+                List<string> endLocation = new List<string>();
+
+                foreach (var item in searchedBus)
+                {
+                    if (!startLocation.Contains(item.Bus.Bus_start_location))
+                    {
+                        startLocation.Add(item.Bus.Bus_start_location);
+                    }
+
+                    if (!endLocation.Contains(item.Bus.Bus_end_location))
+                    {
+                        endLocation.Add(item.Bus.Bus_end_location);
+                    }
+                }
+
+                ViewBag.startLocation = startLocation;
+                ViewBag.endLocation = endLocation;
+                return View("FindBus");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Customer/Details/5
         public ActionResult Details(string id)
@@ -51,7 +128,7 @@ namespace AlaskaExpress.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Customer_email,Customer_password,Customer_fullname,Customer_dob,Customer_gender,Customer_address,Customer_phone,Customer_nid")] Customer customer)
+        public ActionResult Create([Bind(Include = "Customer_email,Customer_password,Customer_fullname,Customer_dob,Customer_address,Customer_phone,Customer_nid")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +160,7 @@ namespace AlaskaExpress.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Customer_email,Customer_password,Customer_fullname,Customer_dob,Customer_gender,Customer_address,Customer_phone,Customer_nid")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Customer_email,Customer_password,Customer_fullname,Customer_dob,Customer_address,Customer_phone,Customer_nid")] Customer customer)
         {
             if (ModelState.IsValid)
             {

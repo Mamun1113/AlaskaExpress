@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.UI;
 
 namespace AlaskaExpress.Controllers
@@ -13,33 +11,25 @@ namespace AlaskaExpress.Controllers
     public class HomeController : Controller
     {
         private AlaskaExpressEntities db = new AlaskaExpressEntities();
-        /*
-        static int addhoise = 0;
-        static int id;
-
-        static List<ButtonModel> btmodel = new List<ButtonModel>();
-
-        */
 
         public ActionResult Index()
         {
-
-            var sql = "SELECT * FROM Bus";
-            List<Bus> searchedBus = db.Buses.SqlQuery(sql).ToList();
+            var sql = "SELECT * FROM Schedule";
+            List<Schedule> searchedBus = db.Schedules.SqlQuery(sql).ToList();
 
             List<string> startLocation = new List<string>();
             List<string> endLocation = new List<string>();
 
             foreach (var item in searchedBus)
             {
-                if (!startLocation.Contains(item.Bus_start_location))
+                if (!startLocation.Contains(item.Bus.Bus_start_location))
                 {
-                    startLocation.Add(item.Bus_start_location);
+                    startLocation.Add(item.Bus.Bus_start_location);
                 }
 
-                if (!endLocation.Contains(item.Bus_end_location))
+                if (!endLocation.Contains(item.Bus.Bus_end_location))
                 {
-                    endLocation.Add(item.Bus_end_location);
+                    endLocation.Add(item.Bus.Bus_end_location);
                 }
             }
 
@@ -48,23 +38,52 @@ namespace AlaskaExpress.Controllers
             return View();
         }
 
-        public ActionResult BusDetails()
+        public ActionResult SearchedBus(string inputJourneyFrom, string inputJourneyTo, string inputJourneyDate)
         {
-            return RedirectToAction("BusDetails", "Bus");
-        }
+            var sql = "SELECT * FROM Schedule INNER JOIN Bus ON Schedule.Bus_id = Bus.Bus_id WHERE Bus_start_location= '" + inputJourneyFrom + "' AND Bus_end_location='" + inputJourneyTo + "' AND Bus_journet_day='" + inputJourneyDate + "' ";
+            List<Schedule> busDetails = db.Schedules.SqlQuery(sql).ToList();
 
+            if (busDetails.Count != 0)
+            {
+                return View("SearchedBus", busDetails);
+            }
+            else
+            {
+                Response.Write("<script>alert('No bus found');</script>");
 
-        public ActionResult TicketDownload()
-        {
-            return View();
+                if (Session["userEmail"] != null)
+                {
+                    return View(Session["userEmail"]);
+                }
+                else
+                {
+                    var sql2 = "SELECT * FROM Schedule";
+                    List<Schedule> searchedBus = db.Schedules.SqlQuery(sql2).ToList();
+
+                    List<string> startLocation = new List<string>();
+                    List<string> endLocation = new List<string>();
+
+                    foreach (var item in searchedBus)
+                    {
+                        if (!startLocation.Contains(item.Bus.Bus_start_location))
+                        {
+                            startLocation.Add(item.Bus.Bus_start_location);
+                        }
+
+                        if (!endLocation.Contains(item.Bus.Bus_end_location))
+                        {
+                            endLocation.Add(item.Bus.Bus_end_location);
+                        }
+                    }
+
+                    ViewBag.startLocation = startLocation;
+                    ViewBag.endLocation = endLocation;
+                    return View("Index");
+                }
+            }
         }
 
         public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
         {
             return View();
         }
@@ -78,15 +97,11 @@ namespace AlaskaExpress.Controllers
         {
             if (Session["userEmail"] != null)
             {
-                return RedirectToAction("", "Home");
+                Response.Write("<script>alert('Already logged in.');</script>");
+                return View("Index");
             }
             else
             {
-                var sql = "SELECT * FROM Admin";
-                List<Admin> admin = db.Admins.SqlQuery(sql).ToList();
-
-                ViewBag.admin = admin;
-
                 return View();
             }
         }
@@ -97,7 +112,7 @@ namespace AlaskaExpress.Controllers
             return RedirectToAction("", "Home");
         }
 
-        public ActionResult AuthorizeLogin(string inputEmailForSignin, string inputPasswordForSignin, string inputRoleForSignin)
+        public ActionResult AuthorizeLogin(string inputEmailForSignin, string inputPasswordForSignin)
         {
             using (AlaskaExpressEntities db = new AlaskaExpressEntities())
             {
@@ -105,6 +120,18 @@ namespace AlaskaExpress.Controllers
                 var managerDetails = db.Managers.Where(user => user.Manager_email == inputEmailForSignin && user.Manager_password == inputPasswordForSignin).FirstOrDefault();
                 var sellerDetails = db.Sellers.Where(user => user.Seller_email == inputEmailForSignin && user.Seller_password == inputPasswordForSignin).FirstOrDefault();
                 var customerDetails = db.Customers.Where(user => user.Customer_email == inputEmailForSignin && user.Customer_password == inputPasswordForSignin).FirstOrDefault();
+
+                if(ViewBag.returnUrl != null)
+                {
+                    if (customerDetails != null)
+                    {
+                        Session["userEmail"] = customerDetails.Customer_email;
+                        Session["userRole"] = "Customer";
+                        return Redirect(ViewBag.returnUrl);
+                    }
+
+                }
+
 
                 if (adminDetails != null)
                 {
@@ -130,12 +157,15 @@ namespace AlaskaExpress.Controllers
                     Session["userRole"] = "Customer";
                     return RedirectToAction("Index", "Customer");
                 }
+                else
+                {
+                    Response.Write("<script>alert('Incorrect Email or Password');</script>");
+                    return View("Login");
+                }
             }
-
-            return RedirectToAction("Login", "Home");
         }
 
-        public ActionResult AuthorizeSignup(string inputFullnameForSignup, string inputPhoneForSignup, string inputDobForSignup, string inputGenderForSignup, string inputNidForSignup, string inputAddressForSignup, string inputEmailForSignup, string inputPasswordForSignup)
+        public ActionResult AuthorizeSignup(string inputFullnameForSignup, string inputPhoneForSignup, string inputDobForSignup, string inputNidForSignup, string inputAddressForSignup, string inputEmailForSignup, string inputPasswordForSignup)
         {
             using (AlaskaExpressEntities db = new AlaskaExpressEntities())
             {
@@ -143,7 +173,8 @@ namespace AlaskaExpress.Controllers
 
                 if (customerDetails != null)
                 {
-                    return RedirectToAction("Login", "Home");
+                    Response.Write("<script>alert('Email already exists.');</script>");
+                    return View("Login");
                 }
                 else if (customerDetails == null)
                 {
@@ -151,97 +182,22 @@ namespace AlaskaExpress.Controllers
                     SqlCommand sql;
                     con.Open();
 
-                    sql = new SqlCommand("insert into Customer values('" + inputEmailForSignup + "','" + inputPasswordForSignup + "','" + inputFullnameForSignup + "','" + inputDobForSignup + "','" + inputGenderForSignup + "','" + inputAddressForSignup + "','" + inputPhoneForSignup + "', '" + inputNidForSignup + "')", con);
+                    sql = new SqlCommand("INSERT INTO Customer VALUES('" + inputEmailForSignup + "','" + inputPasswordForSignup + "','" + inputFullnameForSignup + "','" + inputDobForSignup + "','" + inputAddressForSignup + "', '" + inputPhoneForSignup + "', '" + inputNidForSignup + "')", con);
                     sql.ExecuteNonQuery();
                     con.Close();
 
-                    //Session["userEmail"] = inputEmailForSignup;
-                    return RedirectToAction("Login", "Home");
+                    var customerDetails2 = db.Customers.Where(user => user.Customer_email == inputEmailForSignup && user.Customer_password == inputPasswordForSignup).FirstOrDefault();
+
+                    Session["userEmail"] = customerDetails2.Customer_email;
+                    Session["userRole"] = "Customer";
+                    return RedirectToAction("Index", "Customer");
                 }
             }
 
             return RedirectToAction("Signup", "Home");
         }
-        
-
-        /*
-        public ActionResult Seat(int idre)
-        {
-            id = idre;
-            var sql = "SELECT * FROM Seat WHERE Bus_id= '" + idre + "'";
-
-
-            List<Seat> busSeats = db.Seats.SqlQuery(sql).ToList();
-            //addhoise = 1;
-            //Random random=new Random();
-            /*if(busSeats.Count==0)
-             {
-                 return RedirectToAction("GetBus", "Home");
-             }*/
-            /*for(int i=0;i<16;i++)
-            {
-                int val = random.Next(10);
-                btmodel.Add(new ButtonModel(val%3));
-
-            }*/
-
-        /*
-            if (addhoise != idre)
-            {
-                btmodel.Clear();
-                btmodel.Add(new ButtonModel((int)busSeats[0].A1));
-                btmodel.Add(new ButtonModel((int)busSeats[0].A2));
-                btmodel.Add(new ButtonModel((int)busSeats[0].B1));
-                btmodel.Add(new ButtonModel((int)busSeats[0].B2));
-
-                btmodel.Add(new ButtonModel((int)busSeats[0].C1));
-                btmodel.Add(new ButtonModel((int)busSeats[0].C2));
-                btmodel.Add(new ButtonModel((int)busSeats[0].D1));
-                btmodel.Add(new ButtonModel((int)busSeats[0].A1));
-
-                btmodel.Add(new ButtonModel((int)busSeats[0].E1));
-                btmodel.Add(new ButtonModel((int)busSeats[0].E2));
-                btmodel.Add(new ButtonModel((int)busSeats[0].F1));
-                btmodel.Add(new ButtonModel((int)busSeats[0].F2));
-
-                btmodel.Add(new ButtonModel((int)busSeats[0].G1));
-                btmodel.Add(new ButtonModel((int)busSeats[0].A1));
-                btmodel.Add(new ButtonModel((int)busSeats[0].H1));
-                btmodel.Add(new ButtonModel((int)busSeats[0].H2));
-                addhoise = idre;
-            }
-
-            return View("~/Views/Shared/Seat.cshtml", btmodel);
-        }
-
-        public ActionResult HandleSeatClick(string mine)
-        {
-            int stnnumber = Int32.Parse(mine);
-            if (btmodel[stnnumber].State == 2)
-            {
-                btmodel[stnnumber].State = 2;
-            }
-            else
-            {
-                btmodel[stnnumber].State = (btmodel[stnnumber].State ^ 1);
-            }
-
-            return View("~/Views/Shared/Seat.cshtml", btmodel);
-        }
-*/
-
     }
 }
 
+//Response.Write("<script>alert('Handler for called.');</script>");
 
-public static class MessageBox
-{
-    public static void Show(this Page Page, String Message)
-    {
-        Page.ClientScript.RegisterStartupScript(
-           Page.GetType(),
-           "MessageBox",
-           "<script language='javascript'>alert('" + Message + "');</script>"
-        );
-    }
-}

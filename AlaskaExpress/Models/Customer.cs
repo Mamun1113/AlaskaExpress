@@ -23,8 +23,7 @@ namespace AlaskaExpress.Models
         public string Customer_email { get; set; }
         public string Customer_password { get; set; }
         public string Customer_fullname { get; set; }
-        public string Customer_dob { get; set; }
-        public string Customer_gender { get; set; }
+        public System.DateTime Customer_dob { get; set; }
         public string Customer_address { get; set; }
         public string Customer_phone { get; set; }
         public string Customer_nid { get; set; }

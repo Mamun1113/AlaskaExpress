@@ -134,12 +134,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BuController.cs" />
     <Compile Include="Controllers\BusController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SellerController.cs" />
-    <Compile Include="Controllers\SweetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,7 +172,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Seat.cs">
+    <Compile Include="Models\Schedule.cs">
       <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Seller.cs">
@@ -214,24 +215,19 @@
     <Content Include="Images\aebg5.jpg" />
     <Content Include="Images\aebg6.jpg" />
     <Content Include="Images\Black.png" />
+    <Content Include="Images\block.png" />
     <Content Include="Images\Blue.png" />
     <Content Include="Images\Red.png" />
+    <Content Include="Images\steering.png" />
     <Content Include="Models\Model_AlaskaExpress.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model_AlaskaExpress.Context.cs</LastGenOutput>
       <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
+      <LastGenOutput>Model_AlaskaExpress.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model_AlaskaExpress.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
       <LastGenOutput>Model_AlaskaExpress.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\Model_AlaskaExpress.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model_AlaskaExpress.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model_AlaskaExpress.edmx.diagram">
-      <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -266,6 +262,13 @@
     <Content Include="Content\sweetalert\sweet-alert-animations.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\mixins.less" />
+    <EntityDeploy Include="Models\Model_AlaskaExpress.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_AlaskaExpress.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model_AlaskaExpress.edmx.diagram">
+      <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -292,38 +295,55 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
-    <Content Include="Views\Home\TicketDownload.cshtml" />
-    <Content Include="Views\Manager\CreateSeller.cshtml" />
-    <Content Include="Views\Manager\SellerList.cshtml" />
-    <Content Include="Views\Manager\DeleteSeller.cshtml" />
-    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Bu\Create.cshtml" />
+    <Content Include="Views\Bu\Delete.cshtml" />
+    <Content Include="Views\Bu\Details.cshtml" />
+    <Content Include="Views\Bu\Edit.cshtml" />
+    <Content Include="Views\Bu\Index.cshtml" />
+    <Content Include="Views\Bu\BusDetails.cshtml" />
+    <Content Include="Views\Bu\AddBus.cshtml" />
+    <Content Include="Views\Bu\BusAllDetails.cshtml" />
+    <Content Include="Views\Bu\SearchedBusDetails.cshtml" />
+    <Content Include="Views\Shared\Seat.cshtml" />
     <Content Include="Views\Admin\CreateManager.cshtml" />
     <Content Include="Views\Admin\DeleteManager.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ManagerList.cshtml" />
+    <Content Include="Views\Manager\CreateSeller.cshtml" />
+    <Content Include="Views\Manager\DeleteSeller.cshtml" />
+    <Content Include="Views\Manager\Edit.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\SellerList.cshtml" />
+    <Content Include="Views\Manager\CreateBus.cshtml" />
+    <Content Include="Views\Manager\BusList.cshtml" />
     <Content Include="Views\Bus\Create.cshtml" />
     <Content Include="Views\Bus\Delete.cshtml" />
     <Content Include="Views\Bus\Details.cshtml" />
     <Content Include="Views\Bus\Edit.cshtml" />
     <Content Include="Views\Bus\Index.cshtml" />
-    <Content Include="Views\Bus\BusDetails.cshtml" />
+    <Content Include="Views\Manager\DeleteBus.cshtml" />
+    <Content Include="Views\Schedule\Create.cshtml" />
+    <Content Include="Views\Schedule\Delete.cshtml" />
+    <Content Include="Views\Schedule\Details.cshtml" />
+    <Content Include="Views\Schedule\Edit.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
     <Content Include="Views\Seller\Create.cshtml" />
     <Content Include="Views\Seller\Delete.cshtml" />
     <Content Include="Views\Seller\Details.cshtml" />
     <Content Include="Views\Seller\Edit.cshtml" />
     <Content Include="Views\Seller\Index.cshtml" />
+    <Content Include="Views\Seller\Index - Copy.cshtml" />
+    <Content Include="Views\Seller\BusList.cshtml" />
+    <Content Include="Views\Seller\ScheduleList.cshtml" />
+    <Content Include="Views\Shared\SearchedBus.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Customer\AllCustomers.cshtml" />
-    <Content Include="Views\Bus\AddBus.cshtml" />
-    <Content Include="Views\Bus\BusAllDetails.cshtml" />
-    <Content Include="Views\Bus\SearchedBusDetails.cshtml" />
-    <Content Include="Views\Home\Dropdown.cshtml" />
-    <Content Include="Views\Sweet\Alert.cshtml" />
-    <Content Include="Views\Seller\Index - Copy.cshtml" />
-    <Content Include="Views\Shared\Seat.cshtml" />
+    <Content Include="Views\Customer\Index - Copy.cshtml" />
+    <Content Include="Views\Customer\FindBus.cshtml" />
+    <Content Include="Views\Shared\SeatAvailability.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

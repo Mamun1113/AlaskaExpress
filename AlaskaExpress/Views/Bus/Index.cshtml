@@ -18,22 +18,19 @@
             @Html.DisplayNameFor(model => model.Bus_end_location)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Bus_cost_per_seat)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Bus_total_seat)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Bus_coach)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Bus_cost_per_seat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bus_journey_time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bus_journey_day)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Bus_numberplate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manager.Manager_password)
         </th>
         <th></th>
     </tr>
@@ -47,22 +44,19 @@
             @Html.DisplayFor(modelItem => item.Bus_end_location)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Bus_cost_per_seat)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Bus_total_seat)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Bus_coach)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Bus_cost_per_seat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bus_journey_time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Bus_journey_day)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Bus_numberplate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manager.Manager_password)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Bus_id }) |

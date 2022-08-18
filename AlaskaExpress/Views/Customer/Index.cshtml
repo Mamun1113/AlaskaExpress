@@ -1,69 +1,23 @@
-﻿@model IEnumerable<AlaskaExpress.Models.Customer>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="row mx-5">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_fullname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_dob)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer_nid)
-        </th>
-        <th></th>
-    </tr>
+    <h1> </h1>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_fullname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_dob)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer_nid)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Customer_email }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Customer_email }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Customer_email })
-        </td>
-    </tr>
-}
+    <br />
+    <br />
+    <br />
 
-</table>
+    <p>
+        <a class="btn btn-info" href="/Customer/FindBus">Find Bus</a>
+        &nbsp;
+        <a class="btn btn-info" href="/Seller/SellTicket">View Ticket</a>
+    </p>
+
+    <br />
+    <br />
+    <br />
+
+</div>

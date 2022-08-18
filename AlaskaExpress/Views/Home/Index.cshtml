@@ -1,4 +1,4 @@
-﻿@model AlaskaExpress.Models.Bus
+﻿@model AlaskaExpress.Models.Schedule
 
 @{
     ViewBag.Title = "Home";
@@ -19,7 +19,7 @@
 
     <div class="col-md-4">
         <h2>Search Bus</h2>
-        <form action="/Bus/SearchedBusDetails" method="post">
+        <form action="/Home/SearchedBus" method="post">
 
             <div class="col-8 py-3">
                 <label for="inputJourneyFrom" class="form-label">Start location</label>
@@ -55,14 +55,22 @@
             </div>
 
             <div class="py-3">
-                <button type="submit" class="btn btn-primary" value="Search" name="buttonForBusSearch">Find</button>
+                <button type="submit" class="btn btn-primary" value="Search" name="buttonForBusSearch" id="buttonForBusSearch">Find</button>
             </div>
         </form>
     </div>
 </div>
 
+
 @Scripts.Render("~/bundles/jquery")
 <script>
+
+    //notification
+    /*
+    $("#buttonForBusSearch").click(function () {
+        alert("Handler for .click() called.");
+    });
+    */
 
     //show dropdown values in text box
     $(function () {

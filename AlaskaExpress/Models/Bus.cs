@@ -17,23 +17,20 @@ namespace AlaskaExpress.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bus()
         {
-            this.Managers = new HashSet<Manager>();
-            this.Tickets = new HashSet<Ticket>();
+            this.Schedules = new HashSet<Schedule>();
         }
     
-        public int Bus_id { get; set; }
+        public long Bus_id { get; set; }
         public string Bus_start_location { get; set; }
         public string Bus_end_location { get; set; }
+        public int Bus_cost_per_seat { get; set; }
         public int Bus_total_seat { get; set; }
         public string Bus_coach { get; set; }
-        public int Bus_cost_per_seat { get; set; }
-        public string Bus_journey_time { get; set; }
-        public Nullable<System.DateTime> Bus_journey_day { get; set; }
         public string Bus_numberplate { get; set; }
+        public string Bus_addedby { get; set; }
     
+        public virtual Manager Manager { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Manager> Managers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ticket> Tickets { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

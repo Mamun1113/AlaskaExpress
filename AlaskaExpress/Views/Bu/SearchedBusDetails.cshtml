@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AlaskaExpress.Models.Bus>
+﻿@model IEnumerable<AlaskaExpress.Models.Schedule>
 
 @{
     ViewBag.Title = "SearchedBusDetails";
@@ -27,28 +27,28 @@
             {
                 <tr>
                     <td>
-                        @item.Bus_start_location
+                        @item.Bus.Bus_start_location
                     </td>
                     <td>
-                        @item.Bus_end_location
+                        @item.Bus.Bus_end_location
                     </td>
                     <td>
-                        @item.Bus_total_seat
+                        @item.Bus.Bus_total_seat
                     </td>
                     <td>
-                        @item.Bus_coach
+                        @item.Bus.Bus_coach
                     </td>
                     <td>
-                        @item.Bus_cost_per_seat
+                        @item.Bus.Bus_cost_per_seat
                     </td>
                     <td>
                         @item.Bus_journey_time
                     </td>
                     <td>
-                        @Convert.ToString(item.Bus_journey_day).Substring(0, 9)
+                        @Convert.ToString(item.Bus_journet_day).Substring(0, 9)
                     </td>
                     <td>
-                        @item.Bus_numberplate
+                        @item.Bus.Bus_numberplate
                     </td>
                     <td>
                             @Html.ActionLink("Check availability", "Seat", new { idre = item.Bus_id })
