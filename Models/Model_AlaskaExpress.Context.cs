@@ -29,9 +29,8 @@ namespace AlaskaExpress.Models
         public virtual DbSet<Bus> Buses { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Manager> Managers { get; set; }
-        public virtual DbSet<Seat> Seats { get; set; }
+        public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<Seller> Sellers { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
     }
 }

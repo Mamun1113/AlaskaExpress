@@ -15,17 +15,16 @@ namespace AlaskaExpress.Models
     public partial class Ticket
     {
         public long Ticket_id { get; set; }
-        public string Ticket_date { get; set; }
-        public string Ticket_time { get; set; }
         public string Bus_seats { get; set; }
-        public string Buyer_name { get; set; }
+        public string Buyer_email { get; set; }
         public string Buyer_phone { get; set; }
-        public Nullable<int> Bus_id { get; set; }
+        public long Schedule_id { get; set; }
         public string Customer_email { get; set; }
         public string Seller_email { get; set; }
+        public int Total_price { get; set; }
     
-        public virtual Bus Bus { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual Schedule Schedule { get; set; }
         public virtual Seller Seller { get; set; }
     }
 }

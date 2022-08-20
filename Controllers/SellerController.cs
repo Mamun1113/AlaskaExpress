@@ -15,31 +15,44 @@ namespace AlaskaExpress.Controllers
         private AlaskaExpressEntities db = new AlaskaExpressEntities();
 
         // GET: Seller
+        public ActionResult IndexCopy()
+        {
+            var sellers = db.Sellers.Include(s => s.Manager);
+            return View(sellers.ToList());
+        }
+
         public ActionResult Index()
         {
-            var sql = "SELECT * FROM Bus";
-            List<Bus> searchedBus = db.Buses.SqlQuery(sql).ToList();
-
-            List<string> startLocation = new List<string>();
-            List<string> endLocation = new List<string>();
-
-            foreach (var item in searchedBus)
-            {
-                if (!startLocation.Contains(item.Bus_start_location))
-                {
-                    startLocation.Add(item.Bus_start_location);
-                }
-
-                if (!endLocation.Contains(item.Bus_end_location))
-                {
-                    endLocation.Add(item.Bus_end_location);
-                }
-            }
-
-            ViewBag.startLocation = startLocation;
-            ViewBag.endLocation = endLocation;
             return View();
         }
+
+        public ActionResult BusList()
+        {
+            return View(db.Buses.ToList());
+        }
+
+        public ActionResult ScheduleList()
+        {
+            return View(db.Schedules.ToList());
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Seller/Details/5
         public ActionResult Details(string id)
@@ -59,6 +72,7 @@ namespace AlaskaExpress.Controllers
         // GET: Seller/Create
         public ActionResult Create()
         {
+            ViewBag.Seller_addedby = new SelectList(db.Managers, "Manager_email", "Manager_password");
             return View();
         }
 
@@ -67,7 +81,7 @@ namespace AlaskaExpress.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Seller_email,Seller_password,Seller_fullname,Seller_address,Seller_nid,Seller_phone,Seller_image,Seller_addedby")] Seller seller)
+        public ActionResult Create([Bind(Include = "Seller_email,Seller_password,Seller_fullname,Seller_address,Seller_nid,Seller_phone,Seller_addedby")] Seller seller)
         {
             if (ModelState.IsValid)
             {
@@ -76,6 +90,7 @@ namespace AlaskaExpress.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Seller_addedby = new SelectList(db.Managers, "Manager_email", "Manager_password", seller.Seller_addedby);
             return View(seller);
         }
 
@@ -91,6 +106,7 @@ namespace AlaskaExpress.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Seller_addedby = new SelectList(db.Managers, "Manager_email", "Manager_password", seller.Seller_addedby);
             return View(seller);
         }
 
@@ -99,7 +115,7 @@ namespace AlaskaExpress.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Seller_email,Seller_password,Seller_fullname,Seller_address,Seller_nid,Seller_phone,Seller_image,Seller_addedby")] Seller seller)
+        public ActionResult Edit([Bind(Include = "Seller_email,Seller_password,Seller_fullname,Seller_address,Seller_nid,Seller_phone,Seller_addedby")] Seller seller)
         {
             if (ModelState.IsValid)
             {
@@ -107,6 +123,7 @@ namespace AlaskaExpress.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Seller_addedby = new SelectList(db.Managers, "Manager_email", "Manager_password", seller.Seller_addedby);
             return View(seller);
         }
 

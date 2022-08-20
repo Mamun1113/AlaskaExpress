@@ -4,19 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a9b9b0b1403546c79d3d3d7c4d37a868" Name="Diagram1">
-        <EntityTypeShape EntityType="AlaskaExpressModel.Admin" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlaskaExpressModel.Bus" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlaskaExpressModel.Customer" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlaskaExpressModel.Manager" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlaskaExpressModel.Seat" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlaskaExpressModel.Seller" Width="1.5" PointX="3.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlaskaExpressModel.sysdiagram" Width="1.5" PointX="5.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlaskaExpressModel.Ticket" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
-        <AssociationConnector Association="AlaskaExpressModel.FK__Manager__Bus_id__09DE7BCC" ManuallyRouted="false" />
-        <AssociationConnector Association="AlaskaExpressModel.FK__Ticket__Bus_id__0AD2A005" ManuallyRouted="false" />
-        <AssociationConnector Association="AlaskaExpressModel.FK__Ticket__Customer__0BC6C43E" ManuallyRouted="false" />
-        <AssociationConnector Association="AlaskaExpressModel.FK__Ticket__Seller_e__0CBAE877" ManuallyRouted="false" />
+      <Diagram DiagramId="ab32e9d7717a4992a5b31504846fa2b1" Name="Diagram1">
+        <EntityTypeShape EntityType="AlaskaExpressModel.Admin" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Bus" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Customer" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Manager" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Schedule" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Seller" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlaskaExpressModel.Ticket" Width="1.5" PointX="9.75" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="AlaskaExpressModel.FK__Manager__Manager__014935CB" ManuallyRouted="false" />
+        <AssociationConnector Association="AlaskaExpressModel.FK__Bus__Bus_addedby__08EA5793" ManuallyRouted="false" />
+        <AssociationConnector Association="AlaskaExpressModel.FK__Schedule__Bus_id__0BC6C43E" ManuallyRouted="false" />
+        <AssociationConnector Association="AlaskaExpressModel.FK__Ticket__Customer__0F975522" ManuallyRouted="false" />
+        <AssociationConnector Association="AlaskaExpressModel.FK__Seller__Seller_a__0425A276" ManuallyRouted="false" />
+        <AssociationConnector Association="AlaskaExpressModel.FK__Schedule__Schedu__0CBAE877" ManuallyRouted="false" />
+        <AssociationConnector Association="AlaskaExpressModel.FK__Ticket__Schedule__108B795B" ManuallyRouted="false" />
+        <AssociationConnector Association="AlaskaExpressModel.FK__Ticket__Seller_e__117F9D94" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

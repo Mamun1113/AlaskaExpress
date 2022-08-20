@@ -14,7 +14,17 @@ namespace AlaskaExpress.Models
     
     public partial class Admin
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Admin()
+        {
+            this.Managers = new HashSet<Manager>();
+        }
+    
         public string Admin_email { get; set; }
         public string Admin_password { get; set; }
+        public string Admin_addedby { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Manager> Managers { get; set; }
     }
 }

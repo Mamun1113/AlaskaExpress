@@ -9,8 +9,6 @@
     @Styles.Render("~/Content/fontawesome")
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-
 </head>
 
 <body style="background-color:aliceblue;">
@@ -50,7 +48,6 @@
 
                         @if (Session["userEmail"] != null)
                         {
-
                             {
                                 <a class="nav-link" href="/@Session["userRole"].ToString()/Index">Home</a>
                             }
@@ -71,40 +68,6 @@
                         }
                     </li>
                     &nbsp;
-                    <!--
-    <li class="nav-item">
-        @if (ViewBag.Title == "BusDetails")
-        {
-            <a class="nav-link active" href="/Home/BusDetails">
-                <b>Bus Details</b>
-                <span class="visually-hidden">(current)</span>
-            </a>
-        }
-        else
-        {
-            <a class="nav-link" href="/Home/BusDetails">Bus Details</a>
-        }
-    </li>
-        -->
-                    &nbsp;
-
-                    <!--
-    <li class="nav-item">
-        @if (ViewBag.Title == "TicketDownload")
-        {
-            <a class="nav-link active" href="/Home/TicketDownload">
-                <b>Ticket Download</b>
-                <span class="visually-hidden">(current)</span>
-            </a>
-        }
-        else
-        {
-            <a class="nav-link" href="/Home/TicketDownload">Ticket Download</a>
-        }
-    </li>
-    &nbsp;
-        --->
-
 
                     <li class="nav-item">
                         @if (ViewBag.Title == "About")
@@ -124,28 +87,27 @@
         </div>
     </nav>
 
-    <!--<div style="background-image: url('/Images/AlaskaExpressBG1.jpg'); width:auto">-->
-                    <div style="background-color:mintcream;">
-                        @RenderBody()
-                    </div>
+    <div style="background-color:mintcream;">
+        @RenderBody()
+    </div>
 
-                    <div id="footer">
-                        <footer>
-                            <div class="d-flex justify-content-between px-5 my-3 border-top">
-                                <p>Developed by <b>RAHIM, SAJID & MAMUN</b> | &copy; All rights reserved @DateTime.Now.Year</p>
+    <div id="footer">
+        <footer>
+            <div class="d-flex justify-content-between px-5 my-3 border-top">
+                <p>Developed by <b>RAHIM, SAJID & MAMUN</b> | &copy; All rights reserved @DateTime.Now.Year</p>
 
-                                <ul class="list-unstyled d-flex">
-                                    <li class="ms-3"><a class="link-dark" href="#"><i class="fa-solid fa-envelope"></i></a></li>
-                                    <li class="ms-3"><a class="link-dark" href="#"><i class="fa-brands fa-twitter-square"></i></a></li>
-                                    <li class="ms-3"><a class="link-dark" href="#"><i class="fa-brands fa-instagram-square"></i></a></li>
-                                    <li class="ms-3"><a class="link-dark" href="#"><i class="fa-brands fa-facebook-square"></i></a></li>
-                                </ul>
-                            </div>
-                        </footer>
-                    </div>
+                <ul class="list-unstyled d-flex">
+                    <li class="ms-3"><a class="link-dark" href="#"><i class="fa-solid fa-envelope"></i></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><i class="fa-brands fa-twitter-square"></i></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><i class="fa-brands fa-instagram-square"></i></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><i class="fa-brands fa-facebook-square"></i></a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
 
-                    @Scripts.Render("~/bundles/jquery")
-                    @Scripts.Render("~/bundles/bootstrap.js")
-                    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap.js")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

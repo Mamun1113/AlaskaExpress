@@ -17,6 +17,7 @@ namespace AlaskaExpress.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Seller()
         {
+            this.Schedules = new HashSet<Schedule>();
             this.Tickets = new HashSet<Ticket>();
         }
     
@@ -26,9 +27,11 @@ namespace AlaskaExpress.Models
         public string Seller_address { get; set; }
         public string Seller_nid { get; set; }
         public string Seller_phone { get; set; }
-        public string Seller_image { get; set; }
         public string Seller_addedby { get; set; }
     
+        public virtual Manager Manager { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Schedule> Schedules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Tickets { get; set; }
     }
