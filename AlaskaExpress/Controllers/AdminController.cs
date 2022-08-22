@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using AlaskaExpress.Models;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using AlaskaExpress.Models;
 
 namespace AlaskaExpress.Controllers
 {
@@ -14,7 +8,6 @@ namespace AlaskaExpress.Controllers
     {
         private AlaskaExpressEntities db = new AlaskaExpressEntities();
 
-        // GET: Admin
         public ActionResult Index()
         {
             return View(db.Admins.ToList());
@@ -30,9 +23,6 @@ namespace AlaskaExpress.Controllers
             return View();
         }
 
-        // POST: Admins/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateManager([Bind(Include = "Manager_email,Manager_password,Manager_fullname,Manager_address,Manager_nid,Manager_phone,Manager_addedby")] Manager manager)
@@ -47,6 +37,34 @@ namespace AlaskaExpress.Controllers
             return View();
         }
 
+        public ActionResult SellerList()
+        {
+            return View();
+        }
+
+        public ActionResult CustomerList()
+        {
+            return View();
+        }
+
+        public ActionResult BusList()
+        {
+            return View();
+        }
+
+        public ActionResult SCheduleList()
+        {
+            return View();
+        }
+
+        public ActionResult TicketList()
+        {
+            return View();
+        }
+
+
+
+        /*
         // GET: Admin/Details/5
         public ActionResult Details(string id)
         {
@@ -168,5 +186,6 @@ namespace AlaskaExpress.Controllers
             }
             base.Dispose(disposing);
         }
+        */
     }
 }

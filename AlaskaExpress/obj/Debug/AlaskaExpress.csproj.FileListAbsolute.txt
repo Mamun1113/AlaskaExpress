@@ -83,6 +83,8 @@ E:\AUST\AlaskaExpress\obj\Debug\AlaskaExpress.dll
 E:\AUST\AlaskaExpress\obj\Debug\AlaskaExpress.pdb
 E:\AUST\AlaskaExpress\bin\DocumentFormat.OpenXml.dll
 E:\AUST\AlaskaExpress\bin\DocumentFormat.OpenXml.xml
+E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\EntityFramework.dll
+E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\EntityFramework.xml
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\AlaskaExpress.dll.config
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\AlaskaExpress.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\AlaskaExpress.pdb
@@ -137,11 +139,13 @@ E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\roslyn\VBCSComp
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\roslyn\VBCSCompiler.exe.config
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Antlr3.Runtime.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\DocumentFormat.OpenXml.dll
-E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\EntityFramework.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\EntityFramework.SqlServer.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Microsoft.Web.Infrastructure.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Newtonsoft.Json.dll
+E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Syncfusion.Compression.Base.dll
+E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Syncfusion.Licensing.dll
+E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Syncfusion.Pdf.Base.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\System.Web.Helpers.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\System.Web.Mvc.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\System.Web.Optimization.dll
@@ -151,8 +155,10 @@ E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\System.Web.WebP
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\System.Web.WebPages.Razor.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\WebGrease.dll
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\DocumentFormat.OpenXml.xml
-E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\EntityFramework.xml
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\EntityFramework.SqlServer.xml
+E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Syncfusion.Compression.Base.xml
+E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Syncfusion.Licensing.xml
+E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\Syncfusion.Pdf.Base.xml
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\System.Web.Helpers.xml
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\System.Web.Mvc.xml
 E:\AUST\3.2\CSE3200_Software Development-V\Git\AlaskaExpress\bin\System.Web.Optimization.xml

@@ -13,7 +13,7 @@
         <img class="mySlides" style="height: 650px;" src="~/Images/aebg5.jpg">
         <img class="mySlides" style="height: 650px;" src="~/Images/aebg6.jpg">
 
-        <button class="btn btn-success m-1 justify-content-center" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="btn btn-success m-1" onclick="plusDivs(-1)">&#10094;</button>
         <button class="btn btn-success m-1" onclick="plusDivs(+1)">&#10095;</button>
     </div>
 
@@ -65,13 +65,6 @@
 @Scripts.Render("~/bundles/jquery")
 <script>
 
-    //notification
-    /*
-    $("#buttonForBusSearch").click(function () {
-        alert("Handler for .click() called.");
-    });
-    */
-
     //show dropdown values in text box
     $(function () {
         $("#startLoc").change(function () {
@@ -111,6 +104,6 @@
     var yyyy = today.getFullYear();
 
     today = yyyy + '-' + mm + '-' + dd;
-    $('#inputJourneyDate').attr('min',today);
+    $('#inputJourneyDate').attr('min', today);
 
 </script>

@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AlaskaExpress.Models;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
+using System.Drawing;
 
 namespace AlaskaExpress.Controllers
 {
@@ -83,6 +87,107 @@ namespace AlaskaExpress.Controllers
                 return View("FindBus");
             }
         }
+
+        public ActionResult TicketPending()
+        {
+            return View();
+        }
+
+        public ActionResult TicketComplete(string scheduleID, string selectedAllSeatsforTicket, string txnId, string calculatedTotalprice)
+        {
+            using (AlaskaExpressEntities db = new AlaskaExpressEntities())
+            {
+                System.Data.SqlClient.SqlConnection con = new SqlConnection(@"Data Source=MEGATRONM609\SQLEXPRESS;Initial Catalog=AlaskaExpress; Integrated Security=True");
+                SqlCommand sql;
+                con.Open();
+
+                string userEmail = (string)Session["userEmail"];
+
+                sql = new SqlCommand("INSERT INTO Ticket (Bus_seats,Schedule_id,Customer_email,Total_price,TXN_id,Ticket_state) VALUES('" + selectedAllSeatsforTicket + "'," + scheduleID + ",'" + userEmail + "'," + calculatedTotalprice + ",'" + txnId + "', "+0+")", con);
+                sql.ExecuteNonQuery();
+                con.Close();
+
+                return RedirectToAction("MyTickets", "Customer");  
+            }
+        }
+
+        public ActionResult MyTickets()
+        {
+            using (AlaskaExpressEntities db = new AlaskaExpressEntities())
+            {
+
+                var sql = "SELECT * FROM Ticket WHERE Customer_email = '" + Session["userEmail"] + "'";
+                List<Ticket> ticketDetails = db.Tickets.SqlQuery(sql).ToList();
+
+                return View(ticketDetails);
+            }
+        }
+
+
+
+        public ActionResult TicketDownload(long ticketId)
+        {
+            string ticket_id = ticketId.ToString();
+
+            using (AlaskaExpressEntities db = new AlaskaExpressEntities())
+            {
+                var ticketValues = db.Tickets.Where(user => user.Ticket_id == ticketId).FirstOrDefault();
+
+                string cusName =  ticketValues.Customer.Customer_fullname;
+
+            
+
+
+            //Create an instance of PdfDocument.
+            using (PdfDocument document = new PdfDocument())
+            {
+                //Add a page to the document
+                PdfPage page = document.Pages.Add();
+
+                //Create PDF graphics for the page
+                PdfGraphics graphics = page.Graphics;
+
+                //Set the standard font
+                PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 20);
+
+                //Draw the text
+                graphics.DrawString("AlaskaExpress", font, PdfBrushes.Blue, new PointF(0, 0));
+                graphics.DrawString("Ticket ID: "+ticket_id, font, PdfBrushes.Brown, new PointF(0, 20));
+                graphics.DrawString("Customer Name: "+ ticketValues.Customer.Customer_fullname, font, PdfBrushes.Brown, new PointF(0, 40));
+                graphics.DrawString("Phone: "+ ticketValues.Customer.Customer_phone, font, PdfBrushes.Brown, new PointF(0, 60));
+                graphics.DrawString("Email: "+ ticketValues.Customer.Customer_email, font, PdfBrushes.Brown, new PointF(0, 80));
+                graphics.DrawString("Bus: "+ ticketValues.Schedule.Bus.Bus_numberplate, font, PdfBrushes.Green, new PointF(0, 100));
+                graphics.DrawString("From: "+ ticketValues.Schedule.Bus.Bus_start_location, font, PdfBrushes.Green, new PointF(0, 120));
+                graphics.DrawString("To: "+ ticketValues.Schedule.Bus.Bus_end_location, font, PdfBrushes.Green, new PointF(0, 140));
+                graphics.DrawString("Date: "+ ticketValues.Schedule.Bus_journet_day, font, PdfBrushes.Coral, new PointF(0, 160));
+                graphics.DrawString("Time: "+ ticketValues.Schedule.Bus_journey_time, font, PdfBrushes.Coral, new PointF(0, 180));
+                graphics.DrawString("Seats: "+ ticketValues.Bus_seats, font, PdfBrushes.Coral, new PointF(0, 200));
+
+                string ticketName = "Ticket" + ticket_id + ".pdf";
+                // Open the document in browser after saving it
+                document.Save(ticketName, HttpContext.ApplicationInstance.Response, HttpReadType.Save);
+            }
+
+
+
+                var sql = "SELECT * FROM Ticket WHERE Customer_email = '" + Session["userEmail"] + "'";
+                List<Ticket> ticketDetails = db.Tickets.SqlQuery(sql).ToList();
+
+                return View("MyTickets", ticketDetails);
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

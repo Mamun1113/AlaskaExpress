@@ -4,8 +4,40 @@
     ViewBag.Title = "BusList";
 }
 
-<div class="row mx-5">
+<form action="/Seller/AddSchedule" method="post">
+    <div class="row mx-5">
 
+        <div class="col-xs-10 col-sm-10 col-md-3 col-lg-3 my-5">
+            <div class="py-3">
+                <label for="inputBusIdForAddSchedule" class="form-label">Bus ID</label>
+                <input type="number" class="form-control" name="inputBusIdForAddSchedule" id="inputBusIdForAddSchedule" required minlength="0">
+            </div>
+        </div>
+
+        <div class="col-xs-10 col-sm-10 col-md-3 col-lg-3 my-5">
+            <div class="py-3">
+                <label for="inputTimeForAddSchedule" class="form-label">Journey time</label>
+                <input type="text" class="form-control" name="inputTimeForAddSchedule" id="inputTimeForAddSchedule" required minlength="0">
+            </div>
+        </div>
+
+        <div class="col-xs-10 col-sm-10 col-md-3 col-lg-3 my-5">
+            <div class="py-3">
+                <label for="inputDateForAddSchedule" class="form-label">New schedule date</label>
+                <input type="date" class="form-control" name="inputDateForAddSchedule" id="inputDateForAddSchedule">
+            </div>
+        </div>
+
+        <div class="col-xs-10 col-sm-10 col-md-3 col-lg-3 my-5">
+            <div class="py-3">
+                <button type="submit" class="btn btn-primary" name="buttonForAddSchedule">Add Schedule</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+<hr />
+<div class="row mx-5">
     <h2>Bus List</h2>
 
     <br />
@@ -42,6 +74,7 @@
         </tbody>
     </table>
 
+
     <div class="form-actions no-color">
         @Html.ActionLink("Back to Home", "")
     </div>
@@ -50,3 +83,19 @@
     <br />
     <br />
 </div>
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+
+
+    //disable old dates
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#inputDateForAddSchedule').attr('min', today);
+
+</script>

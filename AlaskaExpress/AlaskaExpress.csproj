@@ -56,6 +56,15 @@
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Syncfusion.Compression.Base, Version=20.2450.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.AspNet.Mvc5.20.2.0.44\lib\net45\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.2450.0.44, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.AspNet.Mvc5.20.2.0.44\lib\net45\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=20.2450.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.AspNet.Mvc5.20.2.0.44\lib\net45\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -134,7 +143,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\BuController.cs" />
     <Compile Include="Controllers\BusController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -150,7 +158,6 @@
     <Compile Include="Models\Bus.cs">
       <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ButtonModel.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
@@ -201,24 +208,32 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\sweetalert\bootstrap-sweetalert.png" />
-    <Content Include="Content\sweetalert\docs.css" />
-    <Content Include="Content\sweetalert\sweet-alert.css" />
-    <Content Include="Content\sweetalert\thumbs-up.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\add.png" />
     <Content Include="Images\aebg1.jpg" />
     <Content Include="Images\aebg2.jpg" />
     <Content Include="Images\aebg3.jpg" />
     <Content Include="Images\aebg4.jpg" />
     <Content Include="Images\aebg5.jpg" />
     <Content Include="Images\aebg6.jpg" />
+    <Content Include="Images\bkash.png" />
     <Content Include="Images\Black.png" />
     <Content Include="Images\block.png" />
     <Content Include="Images\Blue.png" />
+    <Content Include="Images\bus.png" />
+    <Content Include="Images\customer.png" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\manager.png" />
+    <Content Include="Images\nagad.png" />
+    <Content Include="Images\Pending.png" />
     <Content Include="Images\Red.png" />
+    <Content Include="Images\rocket.png" />
+    <Content Include="Images\schedule.png" />
+    <Content Include="Images\seller.png" />
     <Content Include="Images\steering.png" />
+    <Content Include="Images\ticket.png" />
     <Content Include="Models\Model_AlaskaExpress.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
@@ -257,9 +272,6 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Content\sweetalert\sweet-alert.less" />
-    <Content Include="Content\sweetalert\sweet-alert-combine.less" />
-    <Content Include="Content\sweetalert\sweet-alert-animations.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\mixins.less" />
     <EntityDeploy Include="Models\Model_AlaskaExpress.edmx">
@@ -295,15 +307,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
-    <Content Include="Views\Bu\Create.cshtml" />
-    <Content Include="Views\Bu\Delete.cshtml" />
-    <Content Include="Views\Bu\Details.cshtml" />
-    <Content Include="Views\Bu\Edit.cshtml" />
-    <Content Include="Views\Bu\Index.cshtml" />
-    <Content Include="Views\Bu\BusDetails.cshtml" />
-    <Content Include="Views\Bu\AddBus.cshtml" />
-    <Content Include="Views\Bu\BusAllDetails.cshtml" />
-    <Content Include="Views\Bu\SearchedBusDetails.cshtml" />
     <Content Include="Views\Shared\Seat.cshtml" />
     <Content Include="Views\Admin\CreateManager.cshtml" />
     <Content Include="Views\Admin\DeleteManager.cshtml" />
@@ -341,9 +344,14 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Customer\Index - Copy.cshtml" />
+    <Content Include="Views\Admin\CustomerList.cshtml" />
     <Content Include="Views\Customer\FindBus.cshtml" />
     <Content Include="Views\Shared\SeatAvailability.cshtml" />
+    <Content Include="Views\Customer\TicketPending.cshtml" />
+    <Content Include="Views\Customer\TicketComplete.cshtml" />
+    <Content Include="Views\Customer\MyTickets.cshtml" />
+    <Content Include="Views\Seller\TicketList.cshtml" />
+    <Content Include="Views\Admin\SellerList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
