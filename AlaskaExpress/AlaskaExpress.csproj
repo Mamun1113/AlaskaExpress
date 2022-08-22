@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -8,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8BB457DC-D7C2-4C82-9626-B00839248B52}</ProjectGuid>
+    <ProjectGuid>{FE32DB68-A23D-49C6-B872-7F0305D8005E}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -18,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44384</IISExpressSSLPort>
+    <IISExpressSSLPort>44340</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -45,13 +46,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.17.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.17.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Syncfusion.Compression.Base, Version=20.2450.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.AspNet.Mvc5.20.2.0.44\lib\net45\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.2450.0.44, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.AspNet.Mvc5.20.2.0.44\lib\net45\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=20.2450.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Pdf.AspNet.Mvc5.20.2.0.44\lib\net45\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -118,6 +131,7 @@
       <Private>True</Private>
       <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -128,246 +142,145 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BusController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs">
-      <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
+      <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bus.cs">
+      <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
+      <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Manager.cs">
-      <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
+      <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1_AlaskaExpress.Context.cs">
+    <Compile Include="Models\Model_AlaskaExpress.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1_AlaskaExpress.Context.tt</DependentUpon>
+      <DependentUpon>Model_AlaskaExpress.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1_AlaskaExpress.cs">
+    <Compile Include="Models\Model_AlaskaExpress.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
+      <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1_AlaskaExpress.Designer.cs">
+    <Compile Include="Models\Model_AlaskaExpress.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1_AlaskaExpress.edmx</DependentUpon>
+      <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Schedule.cs">
+      <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Seller.cs">
-      <DependentUpon>Model1_AlaskaExpress.tt</DependentUpon>
+      <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ticket.cs">
+      <DependentUpon>Model_AlaskaExpress.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-513.css" />
-    <Content Include="Content\bootstrap-Flatly.css" />
-    <Content Include="Content\bootstrap-Minty.css" />
-    <Content Include="Content\bootstrap-Morph.css" />
-    <Content Include="Content\bootstrap-Morph.min.css" />
-    <Content Include="Content\bootstrap-Sandstone.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-flatly.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-grid.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-grid.min.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-grid.rtl.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-grid.rtl.min.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-reboot.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-reboot.min.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-reboot.rtl.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-reboot.rtl.min.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-utilities.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-utilities.min.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-utilities.rtl.css" />
-    <Content Include="lib\bootstrap\css\bootstrap-utilities.rtl.min.css" />
-    <Content Include="lib\bootstrap\css\bootstrap.css" />
-    <Content Include="lib\bootstrap\css\bootstrap.min.css" />
-    <Content Include="lib\bootstrap\css\bootstrap.rtl.css" />
-    <Content Include="lib\bootstrap\css\bootstrap.rtl.min.css" />
-    <Content Include="lib\bootstrap\js\bootstrap.bundle.js" />
-    <Content Include="lib\bootstrap\js\bootstrap.bundle.min.js" />
-    <Content Include="lib\bootstrap\js\bootstrap.esm.js" />
-    <Content Include="lib\bootstrap\js\bootstrap.esm.min.js" />
-    <Content Include="lib\bootstrap\js\bootstrap.js" />
-    <Content Include="lib\bootstrap\js\bootstrap.min.js" />
-    <Content Include="lib\font-awesome\css\all.css" />
-    <Content Include="lib\font-awesome\css\all.min.css" />
-    <Content Include="lib\font-awesome\css\brands.css" />
-    <Content Include="lib\font-awesome\css\brands.min.css" />
-    <Content Include="lib\font-awesome\css\fontawesome.css" />
-    <Content Include="lib\font-awesome\css\fontawesome.min.css" />
-    <Content Include="lib\font-awesome\css\regular.css" />
-    <Content Include="lib\font-awesome\css\regular.min.css" />
-    <Content Include="lib\font-awesome\css\solid.css" />
-    <Content Include="lib\font-awesome\css\solid.min.css" />
-    <Content Include="lib\font-awesome\css\svg-with-js.css" />
-    <Content Include="lib\font-awesome\css\svg-with-js.min.css" />
-    <Content Include="lib\font-awesome\css\v4-font-face.css" />
-    <Content Include="lib\font-awesome\css\v4-font-face.min.css" />
-    <Content Include="lib\font-awesome\css\v4-shims.css" />
-    <Content Include="lib\font-awesome\css\v4-shims.min.css" />
-    <Content Include="lib\font-awesome\css\v5-font-face.css" />
-    <Content Include="lib\font-awesome\css\v5-font-face.min.css" />
-    <Content Include="lib\font-awesome\js\all.js" />
-    <Content Include="lib\font-awesome\js\all.min.js" />
-    <Content Include="lib\font-awesome\js\brands.js" />
-    <Content Include="lib\font-awesome\js\brands.min.js" />
-    <Content Include="lib\font-awesome\js\conflict-detection.js" />
-    <Content Include="lib\font-awesome\js\conflict-detection.min.js" />
-    <Content Include="lib\font-awesome\js\fontawesome.js" />
-    <Content Include="lib\font-awesome\js\fontawesome.min.js" />
-    <Content Include="lib\font-awesome\js\regular.js" />
-    <Content Include="lib\font-awesome\js\regular.min.js" />
-    <Content Include="lib\font-awesome\js\solid.js" />
-    <Content Include="lib\font-awesome\js\solid.min.js" />
-    <Content Include="lib\font-awesome\js\v4-shims.js" />
-    <Content Include="lib\font-awesome\js\v4-shims.min.js" />
-    <Content Include="lib\font-awesome\sprites\brands.svg" />
-    <Content Include="lib\font-awesome\sprites\regular.svg" />
-    <Content Include="lib\font-awesome\sprites\solid.svg" />
-    <Content Include="Models\Model1_AlaskaExpress.Context.tt">
+    <Content Include="Images\add.png" />
+    <Content Include="Images\aebg1.jpg" />
+    <Content Include="Images\aebg2.jpg" />
+    <Content Include="Images\aebg3.jpg" />
+    <Content Include="Images\aebg4.jpg" />
+    <Content Include="Images\aebg5.jpg" />
+    <Content Include="Images\aebg6.jpg" />
+    <Content Include="Images\bkash.png" />
+    <Content Include="Images\Black.png" />
+    <Content Include="Images\block.png" />
+    <Content Include="Images\Blue.png" />
+    <Content Include="Images\bus.png" />
+    <Content Include="Images\customer.png" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\manager.png" />
+    <Content Include="Images\nagad.png" />
+    <Content Include="Images\Pending.png" />
+    <Content Include="Images\Red.png" />
+    <Content Include="Images\rocket.png" />
+    <Content Include="Images\schedule.png" />
+    <Content Include="Images\seller.png" />
+    <Content Include="Images\steering.png" />
+    <Content Include="Images\ticket.png" />
+    <Content Include="Models\Model_AlaskaExpress.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1_AlaskaExpress.Context.cs</LastGenOutput>
-      <DependentUpon>Model1_AlaskaExpress.edmx</DependentUpon>
+      <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
+      <LastGenOutput>Model_AlaskaExpress.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model1_AlaskaExpress.tt">
+    <Content Include="Models\Model_AlaskaExpress.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1_AlaskaExpress.edmx</DependentUpon>
-      <LastGenOutput>Model1_AlaskaExpress.cs</LastGenOutput>
+      <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
+      <LastGenOutput>Model_AlaskaExpress.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Model1_AlaskaExpress.edmx">
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap\variables.less" />
+    <Content Include="Content\bootstrap\mixins.less" />
+    <EntityDeploy Include="Models\Model_AlaskaExpress.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1_AlaskaExpress.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model_AlaskaExpress.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model1_AlaskaExpress.edmx.diagram">
-      <DependentUpon>Model1_AlaskaExpress.edmx</DependentUpon>
+    <Content Include="Models\Model_AlaskaExpress.edmx.diagram">
+      <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
     </Content>
-    <Content Include="libman.json" />
-    <Content Include="lib\font-awesome\webfonts\fa-brands-400.ttf" />
-    <Content Include="lib\font-awesome\webfonts\fa-brands-400.woff2" />
-    <Content Include="lib\font-awesome\webfonts\fa-regular-400.ttf" />
-    <Content Include="lib\font-awesome\webfonts\fa-regular-400.woff2" />
-    <Content Include="lib\font-awesome\webfonts\fa-solid-900.ttf" />
-    <Content Include="lib\font-awesome\webfonts\fa-solid-900.woff2" />
-    <Content Include="lib\font-awesome\webfonts\fa-v4compatibility.ttf" />
-    <Content Include="lib\font-awesome\webfonts\fa-v4compatibility.woff2" />
-    <Content Include="lib\bootstrap\css\bootstrap-grid.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-grid.min.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-grid.rtl.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-reboot.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-reboot.min.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-reboot.rtl.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-utilities.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-utilities.min.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-utilities.rtl.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap.rtl.css.map" />
-    <Content Include="lib\bootstrap\css\bootstrap.rtl.min.css.map" />
-    <Content Include="lib\bootstrap\js\bootstrap.bundle.js.map" />
-    <Content Include="lib\bootstrap\js\bootstrap.bundle.min.js.map" />
-    <Content Include="lib\bootstrap\js\bootstrap.esm.js.map" />
-    <Content Include="lib\bootstrap\js\bootstrap.esm.min.js.map" />
-    <Content Include="lib\bootstrap\js\bootstrap.js.map" />
-    <Content Include="lib\bootstrap\js\bootstrap.min.js.map" />
-    <Content Include="lib\bootstrap\scss\_accordion.scss" />
-    <Content Include="lib\bootstrap\scss\_alert.scss" />
-    <Content Include="lib\bootstrap\scss\_badge.scss" />
-    <Content Include="lib\bootstrap\scss\_breadcrumb.scss" />
-    <Content Include="lib\bootstrap\scss\_button-group.scss" />
-    <Content Include="lib\bootstrap\scss\_buttons.scss" />
-    <Content Include="lib\bootstrap\scss\_card.scss" />
-    <Content Include="lib\bootstrap\scss\_carousel.scss" />
-    <Content Include="lib\bootstrap\scss\_close.scss" />
-    <Content Include="lib\bootstrap\scss\_containers.scss" />
-    <Content Include="lib\bootstrap\scss\_dropdown.scss" />
-    <Content Include="lib\bootstrap\scss\_forms.scss" />
-    <Content Include="lib\bootstrap\scss\_functions.scss" />
-    <Content Include="lib\bootstrap\scss\_grid.scss" />
-    <Content Include="lib\bootstrap\scss\_helpers.scss" />
-    <Content Include="lib\bootstrap\scss\_images.scss" />
-    <Content Include="lib\bootstrap\scss\_list-group.scss" />
-    <Content Include="lib\bootstrap\scss\_mixins.scss" />
-    <Content Include="lib\bootstrap\scss\_modal.scss" />
-    <Content Include="lib\bootstrap\scss\_nav.scss" />
-    <Content Include="lib\bootstrap\scss\_navbar.scss" />
-    <Content Include="lib\bootstrap\scss\_offcanvas.scss" />
-    <Content Include="lib\bootstrap\scss\_pagination.scss" />
-    <Content Include="lib\bootstrap\scss\_placeholders.scss" />
-    <Content Include="lib\bootstrap\scss\_popover.scss" />
-    <Content Include="lib\bootstrap\scss\_progress.scss" />
-    <Content Include="lib\bootstrap\scss\_reboot.scss" />
-    <Content Include="lib\bootstrap\scss\_root.scss" />
-    <Content Include="lib\bootstrap\scss\_spinners.scss" />
-    <Content Include="lib\bootstrap\scss\_tables.scss" />
-    <Content Include="lib\bootstrap\scss\_toasts.scss" />
-    <Content Include="lib\bootstrap\scss\_tooltip.scss" />
-    <Content Include="lib\bootstrap\scss\_transitions.scss" />
-    <Content Include="lib\bootstrap\scss\_type.scss" />
-    <Content Include="lib\bootstrap\scss\_utilities.scss" />
-    <Content Include="lib\bootstrap\scss\_variables.scss" />
-    <Content Include="lib\bootstrap\scss\bootstrap-grid.scss" />
-    <Content Include="lib\bootstrap\scss\bootstrap-reboot.scss" />
-    <Content Include="lib\bootstrap\scss\bootstrap-utilities.scss" />
-    <Content Include="lib\bootstrap\scss\bootstrap.scss" />
-    <Content Include="lib\bootstrap\scss\forms\_floating-labels.scss" />
-    <Content Include="lib\bootstrap\scss\forms\_form-check.scss" />
-    <Content Include="lib\bootstrap\scss\forms\_form-control.scss" />
-    <Content Include="lib\bootstrap\scss\forms\_form-range.scss" />
-    <Content Include="lib\bootstrap\scss\forms\_form-select.scss" />
-    <Content Include="lib\bootstrap\scss\forms\_form-text.scss" />
-    <Content Include="lib\bootstrap\scss\forms\_input-group.scss" />
-    <Content Include="lib\bootstrap\scss\forms\_labels.scss" />
-    <Content Include="lib\bootstrap\scss\forms\_validation.scss" />
-    <Content Include="lib\bootstrap\scss\helpers\_clearfix.scss" />
-    <Content Include="lib\bootstrap\scss\helpers\_colored-links.scss" />
-    <Content Include="lib\bootstrap\scss\helpers\_position.scss" />
-    <Content Include="lib\bootstrap\scss\helpers\_ratio.scss" />
-    <Content Include="lib\bootstrap\scss\helpers\_stacks.scss" />
-    <Content Include="lib\bootstrap\scss\helpers\_stretched-link.scss" />
-    <Content Include="lib\bootstrap\scss\helpers\_text-truncation.scss" />
-    <Content Include="lib\bootstrap\scss\helpers\_visually-hidden.scss" />
-    <Content Include="lib\bootstrap\scss\helpers\_vr.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_alert.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_backdrop.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_border-radius.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_box-shadow.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_breakpoints.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_buttons.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_caret.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_clearfix.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_color-scheme.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_container.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_deprecate.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_forms.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_gradients.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_grid.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_image.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_list-group.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_lists.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_pagination.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_reset-text.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_resize.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_table-variants.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_text-truncate.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_transition.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_utilities.scss" />
-    <Content Include="lib\bootstrap\scss\mixins\_visually-hidden.scss" />
-    <Content Include="lib\bootstrap\scss\utilities\_api.scss" />
-    <Content Include="lib\bootstrap\scss\vendor\_rfs.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -391,23 +304,59 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\About.cshtml" />
-    <Content Include="Views\Shared\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Signup.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Signup.cshtml" />
+    <Content Include="Views\Shared\Seat.cshtml" />
+    <Content Include="Views\Admin\CreateManager.cshtml" />
+    <Content Include="Views\Admin\DeleteManager.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ManagerList.cshtml" />
+    <Content Include="Views\Manager\CreateSeller.cshtml" />
+    <Content Include="Views\Manager\DeleteSeller.cshtml" />
+    <Content Include="Views\Manager\Edit.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\SellerList.cshtml" />
+    <Content Include="Views\Manager\CreateBus.cshtml" />
+    <Content Include="Views\Manager\BusList.cshtml" />
+    <Content Include="Views\Bus\Create.cshtml" />
+    <Content Include="Views\Bus\Delete.cshtml" />
+    <Content Include="Views\Bus\Details.cshtml" />
+    <Content Include="Views\Bus\Edit.cshtml" />
+    <Content Include="Views\Bus\Index.cshtml" />
+    <Content Include="Views\Manager\DeleteBus.cshtml" />
+    <Content Include="Views\Schedule\Create.cshtml" />
+    <Content Include="Views\Schedule\Delete.cshtml" />
+    <Content Include="Views\Schedule\Details.cshtml" />
+    <Content Include="Views\Schedule\Edit.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\Seller\Create.cshtml" />
+    <Content Include="Views\Seller\Delete.cshtml" />
+    <Content Include="Views\Seller\Details.cshtml" />
+    <Content Include="Views\Seller\Edit.cshtml" />
+    <Content Include="Views\Seller\Index.cshtml" />
+    <Content Include="Views\Seller\Index - Copy.cshtml" />
+    <Content Include="Views\Seller\BusList.cshtml" />
+    <Content Include="Views\Seller\ScheduleList.cshtml" />
+    <Content Include="Views\Shared\SearchedBus.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Admin\CustomerList.cshtml" />
+    <Content Include="Views\Customer\FindBus.cshtml" />
+    <Content Include="Views\Shared\SeatAvailability.cshtml" />
+    <Content Include="Views\Customer\TicketPending.cshtml" />
+    <Content Include="Views\Customer\TicketComplete.cshtml" />
+    <Content Include="Views\Customer\MyTickets.cshtml" />
+    <Content Include="Views\Seller\TicketList.cshtml" />
+    <Content Include="Views\Admin\SellerList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
@@ -431,9 +380,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52096</DevelopmentServerPort>
+          <DevelopmentServerPort>58434</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44384/</IISUrl>
+          <IISUrl>https://localhost:44340/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -448,7 +397,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
