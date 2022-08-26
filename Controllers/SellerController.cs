@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -35,6 +36,50 @@ namespace AlaskaExpress.Controllers
         {
             return View(db.Schedules.ToList());
         }
+
+        public ActionResult AddSchedule(long inputBusIdForAddSchedule, string inputTimeForAddSchedule, string inputDateForAddSchedule)
+        {
+            using (AlaskaExpressEntities db = new AlaskaExpressEntities())
+            {
+                System.Data.SqlClient.SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AMGVCS3\SQLEXPRESS;Initial Catalog=AlaskaExpress; Integrated Security=True");
+                SqlCommand sql;
+                con.Open();
+
+                string userEmail = (string)Session["userEmail"];
+
+                sql = new SqlCommand("INSERT INTO Schedule(Bus_journey_time,Bus_journey_day,Bus_id,Schedule_addedby) VALUES('" + inputTimeForAddSchedule + "','" + inputDateForAddSchedule + "', " + inputBusIdForAddSchedule + ", '" + userEmail + "')", con);
+                sql.ExecuteNonQuery();
+                con.Close();
+
+                return RedirectToAction("ScheduleList", "Seller");
+            }
+        }
+
+        public ActionResult TicketList()
+        {
+            var sql = "SELECT * FROM Ticket WHERE Ticket_state='0'";
+            List<Ticket> unconfirmedTicket = db.Tickets.SqlQuery(sql).ToList();
+
+            return View(unconfirmedTicket); 
+        }
+
+        public ActionResult TicketConfirm(long ticket_id)
+        {
+
+            System.Data.SqlClient.SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AMGVCS3\SQLEXPRESS;Initial Catalog=AlaskaExpress; Integrated Security=True");
+            SqlCommand sql;
+            con.Open();
+
+            sql = new SqlCommand("UPDATE Ticket SET Ticket_state=1 WHERE Ticket_id = " + ticket_id + "", con);
+            sql.ExecuteNonQuery();
+            con.Close();
+
+            var sql2 = "SELECT * FROM Ticket WHERE Ticket_state='0'";
+            List<Ticket> unconfirmedTicket = db.Tickets.SqlQuery(sql2).ToList();
+
+            return View("TicketList", unconfirmedTicket);
+        }
+
 
 
 

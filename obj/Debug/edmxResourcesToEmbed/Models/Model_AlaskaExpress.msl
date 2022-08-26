@@ -101,12 +101,12 @@
         <MappingFragment StoreEntitySet="Ticket">
           <ScalarProperty Name="Ticket_id" ColumnName="Ticket_id" />
           <ScalarProperty Name="Bus_seats" ColumnName="Bus_seats" />
-          <ScalarProperty Name="Buyer_email" ColumnName="Buyer_email" />
-          <ScalarProperty Name="Buyer_phone" ColumnName="Buyer_phone" />
           <ScalarProperty Name="Schedule_id" ColumnName="Schedule_id" />
           <ScalarProperty Name="Customer_email" ColumnName="Customer_email" />
           <ScalarProperty Name="Seller_email" ColumnName="Seller_email" />
           <ScalarProperty Name="Total_price" ColumnName="Total_price" />
+          <ScalarProperty Name="TXN_id" ColumnName="TXN_id" />
+          <ScalarProperty Name="Ticket_state" ColumnName="Ticket_state" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

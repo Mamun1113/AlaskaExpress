@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AlaskaExpress.Models;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using AlaskaExpress.Models;
 
 namespace AlaskaExpress.Controllers
 {
@@ -39,7 +34,6 @@ namespace AlaskaExpress.Controllers
                 db.SaveChanges();
                 return RedirectToAction("SellerList");
             }
-
             return View();
         }
 
@@ -66,13 +60,9 @@ namespace AlaskaExpress.Controllers
 
         public ActionResult CreateBus()
         {
-            //ViewBag.Bus_addedby = new SelectList(db.Managers, "Manager_email", "Manager_password");
             return View();
         }
 
-        // POST: Bus/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateBus([Bind(Include = "Bus_start_location,Bus_end_location,Bus_cost_per_seat,Bus_total_seat,Bus_coach,Bus_numberplate,Bus_addedby")] Bus bus)
@@ -106,24 +96,7 @@ namespace AlaskaExpress.Controllers
             return View();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /*
 
         // GET: Manager/Details/5
         public ActionResult Details(string id)
@@ -232,5 +205,6 @@ namespace AlaskaExpress.Controllers
             }
             base.Dispose(disposing);
         }
+        */
     }
 }

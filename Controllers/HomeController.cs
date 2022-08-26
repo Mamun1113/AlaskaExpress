@@ -1,10 +1,8 @@
 ﻿using AlaskaExpress.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI;
 
 namespace AlaskaExpress.Controllers
 {
@@ -121,7 +119,7 @@ namespace AlaskaExpress.Controllers
                 var sellerDetails = db.Sellers.Where(user => user.Seller_email == inputEmailForSignin && user.Seller_password == inputPasswordForSignin).FirstOrDefault();
                 var customerDetails = db.Customers.Where(user => user.Customer_email == inputEmailForSignin && user.Customer_password == inputPasswordForSignin).FirstOrDefault();
 
-                if(ViewBag.returnUrl != null)
+                if (ViewBag.returnUrl != null)
                 {
                     if (customerDetails != null)
                     {
@@ -178,7 +176,7 @@ namespace AlaskaExpress.Controllers
                 }
                 else if (customerDetails == null)
                 {
-                    System.Data.SqlClient.SqlConnection con = new SqlConnection(@"Data Source=MEGATRONM609\SQLEXPRESS;Initial Catalog=AlaskaExpress; Integrated Security=True");
+                    System.Data.SqlClient.SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-AMGVCS3\SQLEXPRESS;Initial Catalog=AlaskaExpress; Integrated Security=True");
                     SqlCommand sql;
                     con.Open();
 
@@ -198,6 +196,3 @@ namespace AlaskaExpress.Controllers
         }
     }
 }
-
-//Response.Write("<script>alert('Handler for called.');</script>");
-

@@ -100,12 +100,12 @@
           </Key>
           <Property Name="Ticket_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Bus_seats" Type="varchar(max)" Nullable="false" />
-          <Property Name="Buyer_email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Buyer_phone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Schedule_id" Type="bigint" Nullable="false" />
           <Property Name="Customer_email" Type="varchar" MaxLength="50" />
           <Property Name="Seller_email" Type="varchar" MaxLength="50" />
           <Property Name="Total_price" Type="int" Nullable="false" />
+          <Property Name="TXN_id" Type="varchar" MaxLength="50" />
+          <Property Name="Ticket_state" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__Bus__Bus_addedby__08EA5793">
           <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
@@ -357,12 +357,12 @@
           </Key>
           <Property Name="Ticket_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Bus_seats" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Buyer_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Buyer_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Schedule_id" Type="Int64" Nullable="false" />
           <Property Name="Customer_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Seller_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Total_price" Type="Int32" Nullable="false" />
+          <Property Name="TXN_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ticket_state" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__Ticket__Customer__0F975522" FromRole="Ticket" ToRole="Customer" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK__Ticket__Schedule__108B795B" FromRole="Ticket" ToRole="Schedule" />
           <NavigationProperty Name="Seller" Relationship="Self.FK__Ticket__Seller_e__117F9D94" FromRole="Ticket" ToRole="Seller" />
@@ -610,12 +610,12 @@
               <MappingFragment StoreEntitySet="Ticket">
                 <ScalarProperty Name="Ticket_id" ColumnName="Ticket_id" />
                 <ScalarProperty Name="Bus_seats" ColumnName="Bus_seats" />
-                <ScalarProperty Name="Buyer_email" ColumnName="Buyer_email" />
-                <ScalarProperty Name="Buyer_phone" ColumnName="Buyer_phone" />
                 <ScalarProperty Name="Schedule_id" ColumnName="Schedule_id" />
                 <ScalarProperty Name="Customer_email" ColumnName="Customer_email" />
                 <ScalarProperty Name="Seller_email" ColumnName="Seller_email" />
                 <ScalarProperty Name="Total_price" ColumnName="Total_price" />
+                <ScalarProperty Name="TXN_id" ColumnName="TXN_id" />
+                <ScalarProperty Name="Ticket_state" ColumnName="Ticket_state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -95,12 +95,12 @@
     </Key>
     <Property Name="Ticket_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Bus_seats" Type="varchar(max)" Nullable="false" />
-    <Property Name="Buyer_email" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Buyer_phone" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Schedule_id" Type="bigint" Nullable="false" />
     <Property Name="Customer_email" Type="varchar" MaxLength="50" />
     <Property Name="Seller_email" Type="varchar" MaxLength="50" />
     <Property Name="Total_price" Type="int" Nullable="false" />
+    <Property Name="TXN_id" Type="varchar" MaxLength="50" />
+    <Property Name="Ticket_state" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK__Bus__Bus_addedby__08EA5793">
     <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
