@@ -25,7 +25,6 @@
         <thead>
             <tr>
                 <th>Manager's Email</th>
-                <th>Manager's Password</th>
                 <th>Manager's Fullname</th>
                 <th>Manager's Address</th>
                 <th>Manager's NID</th>
@@ -39,7 +38,6 @@
             {
                 <tr>
                     <td>@item.Manager_email</td>
-                    <td>@item.Manager_password</td>
                     <td>@item.Manager_fullname</td>
                     <td>@item.Manager_address</td>
                     <td>@item.Manager_nid</td>
@@ -49,8 +47,12 @@
             }
         </tbody>
     </table>
-    <p></p>
-    <p></p>
+
+    <div class="form-actions no-color">
+        @Html.ActionLink("Back to Home", "")
+    </div>
+
+    <br />
+    <br />
+    <br />
 </div>
-
-

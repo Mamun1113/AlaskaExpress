@@ -11,7 +11,8 @@ namespace AlaskaExpress.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Bus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,16 +20,38 @@ namespace AlaskaExpress.Models
         {
             this.Schedules = new HashSet<Schedule>();
         }
-    
+
+        [Display(Name = "Bus ID")]
         public long Bus_id { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide Start Location")]
+        [Display(Name = "Start Location")]
         public string Bus_start_location { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide End Location")]
+        [Display(Name = "End Location")]
         public string Bus_end_location { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide cost of a seat")]
+        [Display(Name = "Cost Per Seat")]
         public int Bus_cost_per_seat { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide Bus Total Seat")]
+        [Display(Name = "Total Seat")]
         public int Bus_total_seat { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide Bus Type (AC/Non-AC) ")]
+        [Display(Name = "Coach")]
         public string Bus_coach { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide Bus Numberplate")]
+        [Display(Name = "Number Plate")]
         public string Bus_numberplate { get; set; }
+
+
+        [Display(Name = "Added By")]
         public string Bus_addedby { get; set; }
-    
+
         public virtual Manager Manager { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Schedule> Schedules { get; set; }
