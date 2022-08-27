@@ -11,18 +11,35 @@ namespace AlaskaExpress.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Ticket
     {
+        [Display(Name = "Ticket ID")]
         public long Ticket_id { get; set; }
+
+
+        [Display(Name = "Total Seats")]
         public string Bus_seats { get; set; }
+
+        [Display(Name = "Schedule ID")]
         public long Schedule_id { get; set; }
+
+        [Display(Name = "Passenger's Email")]
         public string Customer_email { get; set; }
+
+        [Display(Name = "Seller's Email")]
         public string Seller_email { get; set; }
+
+        [Display(Name = "Total Price")]
         public int Total_price { get; set; }
+
+        [Display(Name = "Transactions Number")]
         public string TXN_id { get; set; }
+
+        [Display(Name = "State")]
         public int Ticket_state { get; set; }
-    
+
         public virtual Customer Customer { get; set; }
         public virtual Schedule Schedule { get; set; }
         public virtual Seller Seller { get; set; }

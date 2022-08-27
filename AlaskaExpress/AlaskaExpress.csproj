@@ -143,7 +143,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\BusController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
@@ -218,6 +217,11 @@
     <Content Include="Images\aebg4.jpg" />
     <Content Include="Images\aebg5.jpg" />
     <Content Include="Images\aebg6.jpg" />
+    <Content Include="Images\bg1.jpg" />
+    <Content Include="Images\bg2.png" />
+    <Content Include="Images\bg3.jpg" />
+    <Content Include="Images\bg5.jpg" />
+    <Content Include="Images\bg6.jpg" />
     <Content Include="Images\bkash.png" />
     <Content Include="Images\Black.png" />
     <Content Include="Images\block.png" />
@@ -225,6 +229,7 @@
     <Content Include="Images\bus.png" />
     <Content Include="Images\customer.png" />
     <Content Include="Images\delete.png" />
+    <Content Include="Images\bg4.jpg" />
     <Content Include="Images\manager.png" />
     <Content Include="Images\nagad.png" />
     <Content Include="Images\Pending.png" />
@@ -234,6 +239,7 @@
     <Content Include="Images\seller.png" />
     <Content Include="Images\steering.png" />
     <Content Include="Images\ticket.png" />
+    <Content Include="Images\user.png" />
     <Content Include="Models\Model_AlaskaExpress.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model_AlaskaExpress.edmx</DependentUpon>
@@ -305,7 +311,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
     <Content Include="Views\Shared\Seat.cshtml" />
     <Content Include="Views\Admin\CreateManager.cshtml" />
@@ -314,35 +320,18 @@
     <Content Include="Views\Admin\ManagerList.cshtml" />
     <Content Include="Views\Manager\CreateSeller.cshtml" />
     <Content Include="Views\Manager\DeleteSeller.cshtml" />
-    <Content Include="Views\Manager\Edit.cshtml" />
+    <Content Include="Views\Manager\UserProfile.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Manager\SellerList.cshtml" />
     <Content Include="Views\Manager\CreateBus.cshtml" />
     <Content Include="Views\Manager\BusList.cshtml" />
-    <Content Include="Views\Bus\Create.cshtml" />
-    <Content Include="Views\Bus\Delete.cshtml" />
-    <Content Include="Views\Bus\Details.cshtml" />
-    <Content Include="Views\Bus\Edit.cshtml" />
-    <Content Include="Views\Bus\Index.cshtml" />
     <Content Include="Views\Manager\DeleteBus.cshtml" />
-    <Content Include="Views\Schedule\Create.cshtml" />
-    <Content Include="Views\Schedule\Delete.cshtml" />
-    <Content Include="Views\Schedule\Details.cshtml" />
-    <Content Include="Views\Schedule\Edit.cshtml" />
-    <Content Include="Views\Schedule\Index.cshtml" />
-    <Content Include="Views\Seller\Create.cshtml" />
-    <Content Include="Views\Seller\Delete.cshtml" />
-    <Content Include="Views\Seller\Details.cshtml" />
-    <Content Include="Views\Seller\Edit.cshtml" />
+    <Content Include="Views\Seller\UserProfile.cshtml" />
     <Content Include="Views\Seller\Index.cshtml" />
-    <Content Include="Views\Seller\Index - Copy.cshtml" />
     <Content Include="Views\Seller\BusList.cshtml" />
     <Content Include="Views\Seller\ScheduleList.cshtml" />
     <Content Include="Views\Shared\SearchedBus.cshtml" />
-    <Content Include="Views\Customer\Create.cshtml" />
-    <Content Include="Views\Customer\Delete.cshtml" />
-    <Content Include="Views\Customer\Details.cshtml" />
-    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\UserProfile.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Admin\CustomerList.cshtml" />
     <Content Include="Views\Customer\FindBus.cshtml" />
@@ -352,6 +341,9 @@
     <Content Include="Views\Customer\MyTickets.cshtml" />
     <Content Include="Views\Seller\TicketList.cshtml" />
     <Content Include="Views\Admin\SellerList.cshtml" />
+    <Content Include="Views\Admin\BusList.cshtml" />
+    <Content Include="Views\Admin\ScheduleList.cshtml" />
+    <Content Include="Views\Admin\TicketList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

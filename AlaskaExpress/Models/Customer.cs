@@ -11,7 +11,8 @@ namespace AlaskaExpress.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,26 @@ namespace AlaskaExpress.Models
         {
             this.Tickets = new HashSet<Ticket>();
         }
-    
+
+        [Display(Name = "Customer Email")]
         public string Customer_email { get; set; }
+
+        [Display(Name = "Password")]
         public string Customer_password { get; set; }
+
+        [Display(Name = "Full Name")]
         public string Customer_fullname { get; set; }
+
+        [Display(Name = "Date of Birth")]
         public System.DateTime Customer_dob { get; set; }
+
+        [Display(Name = "Address")]
         public string Customer_address { get; set; }
+
+        [Display(Name = "Phone")]
         public string Customer_phone { get; set; }
+
+        [Display(Name = "NID")]
         public string Customer_nid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

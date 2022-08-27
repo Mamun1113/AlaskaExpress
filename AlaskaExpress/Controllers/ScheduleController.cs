@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using AlaskaExpress.Models;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using AlaskaExpress.Models;
 
 namespace AlaskaExpress.Controllers
 {
@@ -15,27 +9,27 @@ namespace AlaskaExpress.Controllers
     {
         private AlaskaExpressEntities db = new AlaskaExpressEntities();
 
-        // GET: Schedules
-        public ActionResult Index()
-        {
-            var schedules = db.Schedules.Include(s => s.Bus).Include(s => s.Seller);
-            return View(schedules.ToList());
-        }
-
         public ActionResult SeatAvailability(long? id)
         {
-            if (id == null)
+            if (Session["userEmail"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Schedule schedule = db.Schedules.Find(id);
+                if (schedule == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Bus_id = new SelectList(db.Buses, "Bus_id", "Bus_start_location", schedule.Bus_id);
+                ViewBag.Schedule_addedby = new SelectList(db.Sellers, "Seller_email", "Seller_password", schedule.Schedule_addedby);
+                return View(schedule);
             }
-            Schedule schedule = db.Schedules.Find(id);
-            if (schedule == null)
+            else
             {
-                return HttpNotFound();
+                return View("Login");
             }
-            ViewBag.Bus_id = new SelectList(db.Buses, "Bus_id", "Bus_start_location", schedule.Bus_id);
-            ViewBag.Schedule_addedby = new SelectList(db.Sellers, "Seller_email", "Seller_password", schedule.Schedule_addedby);
-            return View(schedule);
         }
 
         public ActionResult ScheduleUpdate(long scheduleID, string selectedAllSeats,int seatCounter, string startLocation, string endLocation, string coach, int costPerSeat, string numberplate, int inputA1, int inputA2, int inputB1, int inputB2, int inputB3, int inputB4, int inputC1, int inputC2, int inputC3, int inputC4, int inputD1, int inputD2, int inputD3, int inputD4, int inputE1, int inputE2, int inputE3, int inputE4, int inputF1, int inputF2, int inputF3, int inputF4)
@@ -73,9 +67,6 @@ namespace AlaskaExpress.Controllers
                 sql.ExecuteNonQuery();
                 //con.Close();
 
-                //var sql2 = "SELECT * FROM Schedule WHERE Schedule_id= '" + scheduleID + "'";
-                //List<Schedule> updatedSchedule = db.Schedules.SqlQuery(sql2).ToList();
-
                 Schedule schedule2 = db.Schedules.Find(scheduleID);
 
                 ViewBag.scheduleIDforTicket = scheduleID;
@@ -88,132 +79,6 @@ namespace AlaskaExpress.Controllers
                 ViewBag.numberplate = numberplate;
                 return View("~/Views/Customer/TicketPending.cshtml", schedule2);
             }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // GET: Schedules/Details/5
-        public ActionResult Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Schedule schedule = db.Schedules.Find(id);
-            if (schedule == null)
-            {
-                return HttpNotFound();
-            }
-            return View(schedule);
-        }
-
-        // GET: Schedules/Create
-        public ActionResult Create()
-        {
-            ViewBag.Bus_id = new SelectList(db.Buses, "Bus_id", "Bus_start_location");
-            ViewBag.Schedule_addedby = new SelectList(db.Sellers, "Seller_email", "Seller_password");
-            return View();
-        }
-
-        // POST: Schedules/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Schedule_id,Bus_journey_time,Bus_journet_day,A1,A2,B1,B2,B3,B4,C1,C2,C3,C4,D1,D2,D3,D4,E1,E2,E3,E4,F1,F2,F3,F4,Bus_id,Schedule_addedby")] Schedule schedule)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Schedules.Add(schedule);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Bus_id = new SelectList(db.Buses, "Bus_id", "Bus_start_location", schedule.Bus_id);
-            ViewBag.Schedule_addedby = new SelectList(db.Sellers, "Seller_email", "Seller_password", schedule.Schedule_addedby);
-            return View(schedule);
-        }
-
-        // GET: Schedules/Edit/5
-        public ActionResult Edit(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Schedule schedule = db.Schedules.Find(id);
-            if (schedule == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Bus_id = new SelectList(db.Buses, "Bus_id", "Bus_start_location", schedule.Bus_id);
-            ViewBag.Schedule_addedby = new SelectList(db.Sellers, "Seller_email", "Seller_password", schedule.Schedule_addedby);
-            return View(schedule);
-        }
-
-        // POST: Schedules/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Schedule_id,Bus_journey_time,Bus_journet_day,A1,A2,B1,B2,B3,B4,C1,C2,C3,C4,D1,D2,D3,D4,E1,E2,E3,E4,F1,F2,F3,F4,Bus_id,Schedule_addedby")] Schedule schedule)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(schedule).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Bus_id = new SelectList(db.Buses, "Bus_id", "Bus_start_location", schedule.Bus_id);
-            ViewBag.Schedule_addedby = new SelectList(db.Sellers, "Seller_email", "Seller_password", schedule.Schedule_addedby);
-            return View(schedule);
-        }
-
-        // GET: Schedules/Delete/5
-        public ActionResult Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Schedule schedule = db.Schedules.Find(id);
-            if (schedule == null)
-            {
-                return HttpNotFound();
-            }
-            return View(schedule);
-        }
-
-        // POST: Schedules/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            Schedule schedule = db.Schedules.Find(id);
-            db.Schedules.Remove(schedule);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

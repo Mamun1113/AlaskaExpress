@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="py-3">
+            <div class="py-3" hidden>
                 @Html.LabelFor(model => model.Seller_addedby, htmlAttributes: new { @class = "control-label col-md-2" })
                 <input type="email" class="form-control" name="Seller_addedby" value=@Session["userEmail"].ToString()>
             </div>

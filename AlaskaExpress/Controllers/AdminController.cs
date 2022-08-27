@@ -37,55 +37,6 @@ namespace AlaskaExpress.Controllers
             return View();
         }
 
-        public ActionResult SellerList()
-        {
-            return View();
-        }
-
-        public ActionResult CustomerList()
-        {
-            return View();
-        }
-
-        public ActionResult BusList()
-        {
-            return View();
-        }
-
-        public ActionResult SCheduleList()
-        {
-            return View();
-        }
-
-        public ActionResult TicketList()
-        {
-            return View();
-        }
-
-
-
-        /*
-        // GET: Admin/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Admin admin = db.Admins.Find(id);
-            if (admin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(admin);
-        }
-
-        // GET: Admin/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         public ActionResult DeleteManager()
         {
             ViewBag.managers = db.Managers.ToList();
@@ -104,88 +55,29 @@ namespace AlaskaExpress.Controllers
         }
 
 
-        // POST: Admin/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Admin_email,Admin_password")] Admin admin)
+        public ActionResult SellerList()
         {
-            if (ModelState.IsValid)
-            {
-                db.Admins.Add(admin);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(admin);
+            return View(db.Sellers.ToList());
         }
 
-        // GET: Admin/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult CustomerList()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Admin admin = db.Admins.Find(id);
-            if (admin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(admin);
+            return View(db.Customers.ToList());
         }
 
-        // POST: Admin/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Admin_email,Admin_password")] Admin admin)
+        public ActionResult BusList()
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(admin).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(admin);
+            return View(db.Buses.ToList());
         }
 
-        // GET: Admin/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult ScheduleList()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Admin admin = db.Admins.Find(id);
-            if (admin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(admin);
+            return View(db.Schedules.ToList());
         }
 
-        // POST: Admin/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult TicketList()
         {
-            Admin admin = db.Admins.Find(id);
-            db.Admins.Remove(admin);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View(db.Tickets.ToList());
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-        */
     }
 }
