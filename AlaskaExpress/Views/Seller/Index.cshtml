@@ -2,24 +2,27 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row mx-5">
 
-    <h1> </h1>
-
-    <br />
-    <br />
-    <br />
-
+<div class="row mx-5 text-end">
+    <p></p>
+    <p></p>
     <p>
-        <a class="btn btn-info" href="/Seller/BusList">Bus List</a>
-        &nbsp;
-        <a class="btn btn-info" href="/Seller/ScheduleList">Schedule List</a>
-        &nbsp;
-        <a class="btn btn-info" href="/Seller/TicketList">Confirm Ticket</a>
+        @Html.ActionLink("My Profile", "UserProfile", new { id = (string)Session["userEmail"] }, new { @class = "btn btn-info" })
     </p>
+</div>
 
-    <br />
-    <br />
-    <br />
-
+<div class="row mx-5 text-center">
+    <p></p>
+    <p></p>
+    <p>
+        <a class="btn btn-success" href="/Seller/BusList"><img src="~/Images/bus.png" /><b>Bus List</b></a>
+        &nbsp;&nbsp;&nbsp;
+        <a class="btn btn-success" href="/Seller/ScheduleList"><img src="~/Images/schedule.png" /><b>Schedule List</b></a>
+        &nbsp;&nbsp;&nbsp;
+        <a class="btn btn-success" href="/Seller/TicketList"><img src="~/Images/ticket.png" /><b>Confirm Ticket</b></a>
+    </p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
 </div>

@@ -1,8 +1,10 @@
 ﻿using AlaskaExpress.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
+
 
 namespace AlaskaExpress.Controllers
 {
@@ -110,6 +112,7 @@ namespace AlaskaExpress.Controllers
             return RedirectToAction("", "Home");
         }
 
+        [HttpPost]
         public ActionResult AuthorizeLogin(string inputEmailForSignin, string inputPasswordForSignin)
         {
             using (AlaskaExpressEntities db = new AlaskaExpressEntities())
@@ -118,18 +121,6 @@ namespace AlaskaExpress.Controllers
                 var managerDetails = db.Managers.Where(user => user.Manager_email == inputEmailForSignin && user.Manager_password == inputPasswordForSignin).FirstOrDefault();
                 var sellerDetails = db.Sellers.Where(user => user.Seller_email == inputEmailForSignin && user.Seller_password == inputPasswordForSignin).FirstOrDefault();
                 var customerDetails = db.Customers.Where(user => user.Customer_email == inputEmailForSignin && user.Customer_password == inputPasswordForSignin).FirstOrDefault();
-
-                if (ViewBag.returnUrl != null)
-                {
-                    if (customerDetails != null)
-                    {
-                        Session["userEmail"] = customerDetails.Customer_email;
-                        Session["userRole"] = "Customer";
-                        return Redirect(ViewBag.returnUrl);
-                    }
-
-                }
-
 
                 if (adminDetails != null)
                 {
@@ -153,7 +144,22 @@ namespace AlaskaExpress.Controllers
                 {
                     Session["userEmail"] = customerDetails.Customer_email;
                     Session["userRole"] = "Customer";
-                    return RedirectToAction("Index", "Customer");
+                    var rr = Request.UrlReferrer.ToString();
+
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(rr) && !Equals(rr, "Home/Index") && !Equals(rr, "Index") && !Equals(rr, "~/Views/Home/Index.cshtml") && !FF(rr, "SearchedBus") && !FF(rr, "Index") && !FF(rr, "Home"))
+                        {
+                            return Redirect(rr);
+                        }
+                        else
+                            return RedirectToAction("Index", "Customer");
+                    }
+                    catch (Exception e1)
+                    {
+                        Console.WriteLine("Exception caught: {0}", e1);
+                        return RedirectToAction("Index", "Customer");
+                    }
                 }
                 else
                 {
@@ -193,6 +199,19 @@ namespace AlaskaExpress.Controllers
             }
 
             return RedirectToAction("Signup", "Home");
+        }
+
+        [NonAction]
+        public bool FF(string s, string s2)
+        {
+            int i = 0;
+            int len = s2.Length;
+            for (; i < s.Length; i++)
+            {
+                if (i + len >= s.Length) return false;
+                if (Equals(s.Substring(i, len), s2)) return true;
+            }
+            return false;
         }
     }
 }

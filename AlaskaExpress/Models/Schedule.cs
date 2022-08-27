@@ -11,7 +11,8 @@ namespace AlaskaExpress.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Schedule
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,12 @@ namespace AlaskaExpress.Models
         }
     
         public long Schedule_id { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide journey time")]
+        [Display(Name = "Journey Time")]
         public string Bus_journey_time { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide Journey Day")]
+        [Display(Name = "Journey Day")]
         public string Bus_journet_day { get; set; }
         public int A1 { get; set; }
         public int A2 { get; set; }

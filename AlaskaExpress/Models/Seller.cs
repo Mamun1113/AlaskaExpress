@@ -11,7 +11,8 @@ namespace AlaskaExpress.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Seller
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,15 +21,39 @@ namespace AlaskaExpress.Models
             this.Schedules = new HashSet<Schedule>();
             this.Tickets = new HashSet<Ticket>();
         }
-    
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide E-mail")]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail is not valid")]
+        [Display(Name = "Seller Email")]
         public string Seller_email { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide Password")]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = "Password should be min 5")]
+        [Display(Name = "Password")]
         public string Seller_password { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide your name")]
+        [Display(Name = "Full Name")]
         public string Seller_fullname { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide address")]
+        [Display(Name = "Address")]
         public string Seller_address { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide NID Number")]
+        [StringLength(100, MinimumLength = 10, ErrorMessage = "Password should be in between 10 to 17 digits")]
+        [Display(Name = "NID Number")]
         public string Seller_nid { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide Phone number")]
+        [StringLength(11, ErrorMessage = "Password should be in 11 digits")]
+        [Display(Name = "Phone Number")]
+
         public string Seller_phone { get; set; }
+
+        [Display(Name = "Added By")]
         public string Seller_addedby { get; set; }
-    
+
         public virtual Manager Manager { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Schedule> Schedules { get; set; }
