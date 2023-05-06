@@ -1,6 +1,6 @@
 # AlaskaExpress
 
-##Other contributors:
+## Other contributors:
 - https://github.com/Rahim-aust
 - https://github.com/SajidAbdullah729
 
