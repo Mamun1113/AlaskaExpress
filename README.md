@@ -1,5 +1,12 @@
 # AlaskaExpress
 
+##Other contributors:
+- https://github.com/Rahim-aust
+- https://github.com/SajidAbdullah729
+
+![image](https://user-images.githubusercontent.com/66373332/236641949-4cc9376b-ea5c-4e5b-811b-32212aff821c.png)
+
+
 The main objectives of this project are to
 - Save people’s time from waiting in long ticket line
 - Increase human interaction with computer based digital system
