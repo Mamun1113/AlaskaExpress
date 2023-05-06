@@ -4,8 +4,32 @@
 - https://github.com/Rahim-aust
 - https://github.com/SajidAbdullah729
 
+![image](https://user-images.githubusercontent.com/66373332/236641988-419c0327-cd9f-4e56-9cf3-884d7b00b066.png)
+![image](https://user-images.githubusercontent.com/66373332/236642122-c3a62317-0bcd-4516-8d28-bc5af8de3860.png)
+![image](https://user-images.githubusercontent.com/66373332/236642136-93b6ffda-842b-4d64-a8c0-a212498a4f46.png)
+![image](https://user-images.githubusercontent.com/66373332/236642154-8c83f83c-5510-4bf8-bb18-4dd4027bd470.png)
+![image](https://user-images.githubusercontent.com/66373332/236642163-745d1a0c-3970-4370-8880-dd00978f4bf0.png)
+![image](https://user-images.githubusercontent.com/66373332/236642173-8bcfd460-adc7-42d3-839c-ff0166a39037.png)
+![image](https://user-images.githubusercontent.com/66373332/236642177-6671fdeb-ea46-4e73-90c6-7acd6c097343.png)
 ![image](https://user-images.githubusercontent.com/66373332/236641949-4cc9376b-ea5c-4e5b-811b-32212aff821c.png)
+![image](https://user-images.githubusercontent.com/66373332/236641996-52ea7418-f06d-4309-aa56-b72bf9faddd0.png)
+![image](https://user-images.githubusercontent.com/66373332/236642006-4e71f8fb-57e2-456a-bab2-9bfd55d874c4.png)
+![image](https://user-images.githubusercontent.com/66373332/236642009-befe60f8-af87-4ed7-b996-96ebb13add44.png)
+![image](https://user-images.githubusercontent.com/66373332/236642013-2f8be7c1-eed3-4251-96d7-712e4a33b504.png)
+![image](https://user-images.githubusercontent.com/66373332/236642030-328ae76a-a2f4-4116-b6e8-5f8d81802d50.png)
+![image](https://user-images.githubusercontent.com/66373332/236642040-bc6984fd-149d-4288-8b88-36461f2cd1c9.png)
+![image](https://user-images.githubusercontent.com/66373332/236642043-b91b2c1f-81dc-4d3d-9461-1999c05ffce8.png)
+![image](https://user-images.githubusercontent.com/66373332/236642049-1e2133e6-7307-4155-b2c2-218ed4ccb1cf.png)
+![image](https://user-images.githubusercontent.com/66373332/236642064-fd2a89ae-4213-4381-ab9f-8d1dc05b5fa1.png)
+![image](https://user-images.githubusercontent.com/66373332/236642069-72367511-2c05-407a-ba74-b8a2fe2ebe88.png)
+![image](https://user-images.githubusercontent.com/66373332/236642076-b7aedfd2-228d-4a05-b9c2-71ac531adc3a.png)
+![image](https://user-images.githubusercontent.com/66373332/236642082-42ab8de9-ba17-41d6-8fcc-a638b0153ca6.png)
+![image](https://user-images.githubusercontent.com/66373332/236642090-a2295710-d920-496b-b6d7-5aa8ca94530f.png)
+![image](https://user-images.githubusercontent.com/66373332/236642097-86455dbe-2e37-40a2-a807-7acbf6c34dd5.png)
+![image](https://user-images.githubusercontent.com/66373332/236642109-d5389f65-1803-4221-a084-4959240853a3.png)
+![image](https://user-images.githubusercontent.com/66373332/236642112-61d24d46-f336-49df-a7c2-6d77e1605c0c.png)
 
+Youtube demo video link:
 
 The main objectives of this project are to
 - Save people’s time from waiting in long ticket line
