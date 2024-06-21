@@ -1,5 +1,5 @@
 # AlaskaExpress
-
+ASP.NET | MVC | MSSQL
 ## Other contributors:
 - Abdur Rahim Mia https://github.com/Rahim-aust
 - Md. Abdullah Al Sajid Chowdhury https://github.com/SajidAbdullah729
